@@ -1,7 +1,6 @@
-import { View, Text } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
 import './index.scss'
-
+import loadingPhoto from '../../lib/pageSource/loading.svg'
 export default function Index() {
 
   useLoad(() => {
@@ -9,8 +8,8 @@ export default function Index() {
   })
 
   return (
-    <View className='index'>
-      <Text>Hello world!</Text>
-    </View>
+    <div className={"loading"}>
+      <img src={loadingPhoto} alt={loadingPhoto}/>
+    </div>
   )
 }
