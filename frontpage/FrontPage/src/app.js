@@ -1,7 +1,7 @@
 
 import { useLaunch } from '@tarojs/taro'
 import './app.scss'
-
+import {Provider} from 'react-redux'
 function App({ children }) {
 
   useLaunch(() => {
@@ -9,6 +9,7 @@ function App({ children }) {
   })
 
   // children 是将要会渲染的页面
+  // return <Provider store={store}>{children}</Provider>
   return children
 }
 
