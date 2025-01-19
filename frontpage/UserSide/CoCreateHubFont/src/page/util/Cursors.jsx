@@ -2,7 +2,7 @@ import {
     useRemoteCursorOverlayPositions
 } from "@slate-yjs/react";
 import {useRef} from "react";
-import './utils.scss'
+import './utils.css'
 
 export const Cursors = ({children})=>{
     const containerRef = useRef(null)

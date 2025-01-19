@@ -1,6 +1,7 @@
 import {Editor, Transforms} from "slate";
 import {Element as SlateElement} from "slate";
 import {useSlate} from "slate-react";
+import {Button, Icon} from "./component/index.jsx";
 
 const LIST_TYPE = ['numbered-list', 'bulleted-list']
 const TEXT_ALIGN_TYPE = ['left', 'right', 'center', 'justify']
@@ -72,10 +73,39 @@ function toggleBlock(editor, format){
 }
 
 //块级按钮
-export const BlockButton = ({format, icon})=>{
+export const BlockButton = ({format, children})=>{
     const editor = useSlate()
     return(
-        <>
-        </>
+        <Button
+           active={
+            isBlockActive(
+               editor,
+                format,
+                TEXT_ALIGN_TYPE.includes(format) ? 'align' : 'type'
+           )}
+
+           onMouseDown={event => {
+               event.preventDefault();
+               toggleBlock(editor,format)
+           }}
+        >
+            <Icon>{children}</Icon>
+
+        </Button>
+    )
+}
+//标记按钮
+export const MarkButton = ({format, children})=>{
+    const editor = useSlate()
+    return(
+        <Button
+            active={isMarkActive(editor, format)}
+            onMouseDown={event=>{
+                event.preventDefault()
+                toggleMark(editor, format)
+            }}
+        >
+           <Icon>{children}</Icon>
+        </Button>
     )
 }

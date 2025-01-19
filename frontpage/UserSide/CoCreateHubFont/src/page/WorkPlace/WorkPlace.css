@@ -1,0 +1,83 @@
+html, body {
+    height: 100%;
+    margin: 0; /* 去除默认的 margin */
+    padding: 0; /* 去除默认的 padding */
+}
+
+#root{
+    position: relative;
+   top: 0;
+    width: 100%;
+    height:100vh;
+}
+.workPlace{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 水平居中 */
+}
+.holeEditor{
+    margin-top: 10%;
+    background-color: white;
+    color: black;
+    width: 70%;
+    height: 100%;
+    border-radius: 5px;
+    display: block;
+
+}
+.editable{
+    width: 90%;
+    height: 100%;
+    margin: 20px;
+    flex-wrap: wrap;
+}
+
+.editable:focus{
+    outline: none;
+}
+.editable p{
+    margin:  0.2em 0;
+    width: 100%;
+}
+.editorHead{
+    width: 100%;
+    height: 85px;
+    background-color: black;
+    margin-bottom: 50px;
+    opacity: 0.9;
+    position: fixed;
+    display: flex;
+}
+.editorHead img{
+    cursor: pointer;
+    margin: 25px 3px 16px 50px;
+    width: 35px;
+    height: 35px;
+}
+.editorHead span{
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    line-height: 80px;
+}
+
+.mesAuser{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    display: flex;
+}
+.mes svg{
+    width: 20px;
+    height: 20px;
+    margin: 35px 10px 30px;
+}
+.user svg{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin: 15px 15px;
+}
