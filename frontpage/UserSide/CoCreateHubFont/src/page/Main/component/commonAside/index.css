@@ -1,0 +1,14 @@
+.app-name {
+    background-color: rgb(0, 21, 41);
+    text-align: center;
+    color: #ffffff;
+    line-height: 64px;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.ant-menu-item {
+    height: 60px !important; /* 修改菜单项的高度 */
+    line-height:60px !important; /* 保持文字居中 */
+}
