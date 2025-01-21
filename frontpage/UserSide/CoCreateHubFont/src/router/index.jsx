@@ -7,6 +7,7 @@ import Collection from "../page/Collection/Collection.jsx";
 import Share from "../page/Share/Share.jsx";
 import Recent from "../page/Recent/Recent.jsx";
 import {Home} from "@mui/icons-material";
+import Helper from "../page/User/Helper.jsx";
 
 const router = createBrowserRouter([
     {
@@ -37,12 +38,16 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path:'/',
+        path:'/work',
         element: <App/>
     },
     {
         path:'/User',
         element: <User/>
+    },
+    {
+        path:'/Helper',
+        element:<Helper/>
     }
 ])
 export default router

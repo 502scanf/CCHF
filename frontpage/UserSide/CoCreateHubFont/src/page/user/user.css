@@ -67,7 +67,13 @@
     color: white;
     margin-left: 20px;
     font-weight: bold;
-
+}
+.spanHead span{
+    display: block;
+    margin: 10px;
+}
+.email{
+    color: #a9a8a8;
 }
 .Inform button{
     height: 50px;
