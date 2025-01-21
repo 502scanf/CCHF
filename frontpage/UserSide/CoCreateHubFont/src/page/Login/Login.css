@@ -1,0 +1,79 @@
+/* 页面容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(26, 26, 26);
+  overflow: hidden;
+}
+
+/* 新增 header-logo 部分样式 */
+.header-logo {
+  display: flex;
+  justify-content: flex-start;
+  /* 左对齐 */
+  align-items: center;
+  margin-bottom: 40px;
+  /* 增加顶部间距 */
+}
+
+/* logo 样式 */
+.header-logo-img {
+  width: 20px;
+  margin-right: 10px;
+  /* logo 和 title 之间的间距 */
+}
+
+/* title 样式 */
+.header-title {
+  font-weight: 700;
+  font-size: 24px;
+  color: #fff;
+  margin: 0;
+}
+
+/* 表单容器样式 */
+.login-container {
+  border-top: 1px solid #fff;
+  /* 只在上方显示白线 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  background: rgb(26, 26, 26);
+  padding: 20px;
+  color: #fff;
+}
+
+/* 左对齐的标题样式 */
+.login-title {
+  font-weight: 500;
+  font-size: 15px;
+  color: #fff;
+  /* 左对齐 */
+  width: 100%;
+}
+
+
+
+/* 按钮样式 */
+button.ant-btn {
+  background-color: #808080;
+  /* 设置按钮背景为灰色 */
+  color: #fff;
+  /* 设置文字颜色为白色 */
+  border: 1px solid #808080;
+  /* 设置灰色边框 */
+}
+
+/* 按钮悬停样式 */
+button.ant-btn:hover {
+  background-color: #696969;
+  /* 悬停时按钮变为深灰色 */
+  border: 1px solid #696969;
+  /* 悬停时边框变深灰色 */
+}
