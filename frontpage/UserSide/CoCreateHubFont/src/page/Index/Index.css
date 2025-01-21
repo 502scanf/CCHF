@@ -1,0 +1,120 @@
+/* General Styling */
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  /* 设置背景为黑色 */
+  color: #fff;
+  /* 默认文本为白色 */
+}
+
+.react-native-home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* 确保背景填满页面 */
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #272727;
+  color: #fff;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo .logo {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.header-logo span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.header-nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.header-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main Section */
+.main-content {
+  text-align: center;
+  padding: 20px;
+  background-color: #000;
+  /* 背景颜色一致 */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 50px;
+  /* 从页面三分之一开始 */
+}
+
+.main-title h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.main-title p {
+  font-size: 20px;
+  color: #ccc;
+  /* 次要文本颜色 */
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+.main-buttons {
+  display: flex;
+  flex-direction: column;
+  /* 垂直排列按钮 */
+  gap: 15px;
+  /* 按钮间距 */
+  width: 100%;
+  max-width: 200px;
+}
+
+.main-buttons .ant-btn {
+  background-color: rgb(244, 237, 237);
+  /* 按钮背景色 */
+  color: rgb(42, 41, 41);
+}
+
+.main-buttons .ant-btn:hover {
+  background-color: rgb(210, 208, 208);
+  /* 按钮悬停背景色 */
+}
+
+/* Footer Section */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px;
+}
