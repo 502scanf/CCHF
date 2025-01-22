@@ -5,7 +5,7 @@ import logo from "@assets/logo.png"; // 引入图片
 
 const Login= () => {
   const [form] = Form.useForm();
-  const [autoLogin, setAutoLogin] = useState(false);
+  // const [autoLogin, setAutoLogin] = useState(false);
 
   const onFinishFailed = (errorInfo) => {
     message.error("请检查表单信息是否正确！");
