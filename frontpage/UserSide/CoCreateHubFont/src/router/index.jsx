@@ -3,8 +3,21 @@ import {createBrowserRouter, Navigate} from "react-router-dom";
 import App from "../App.jsx";
 import Main from "../page/Main/index.jsx";
 import {Home} from "@mui/icons-material";
+import Helper from "../page/User/Helper.jsx";
+
+import Index from "@page/Top";
+import Login from "@page/login/Login.jsx";
+
 
 const router = createBrowserRouter([
+    {
+        path:'/top',
+        element:<Index/>
+    },
+    {
+        path:'/login',
+        element: <Login/>
+    },
     {
         path:'/',
         Component: Main,
@@ -35,12 +48,16 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path:'/',
+        path:'/work',
         element: <App/>
     },
     {
         path:'/User',
         element: <User/>
+    },
+    {
+        path:'/Helper',
+        element:<Helper/>
     }
 ])
 export default router

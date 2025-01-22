@@ -1,35 +1,29 @@
-/* General Styling */
-html,
-body {
-  margin: 0;
-  height: 100%;
-  font-family: Arial, sans-serif;
-  background-color: #000;
-  /* 设置背景为黑色 */
-  color: #fff;
-  /* 默认文本为白色 */
-}
 
 .react-native-home {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* 确保背景填满页面 */
+  background-image: url('@assets/back.jpg'); /* 替换为你的图片路径 */
+  background-size: cover; /* 让图片覆盖整个背景 */
+  background-position: center; /* 图片居中显示 */
+  background-repeat: no-repeat; /* 防止图片重复 */
+  margin: 0; /* 去除默认的 body 边距 */
+  height: 100vh; /* 让 body 高度占满整个视口 */
 }
 
-/* Header Section */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #272727;
+  background-color: transparent;
   color: #fff;
 }
 
 .header-logo {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .header-logo .logo {
@@ -38,7 +32,7 @@ body {
 }
 
 .header-logo span {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -51,6 +45,7 @@ body {
   color: #fff;
   margin: 0 10px;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .header-nav a:hover {
@@ -61,8 +56,6 @@ body {
 .main-content {
   text-align: center;
   padding: 20px;
-  background-color: #000;
-  /* 背景颜色一致 */
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -82,39 +75,32 @@ body {
   color: #ccc;
   /* 次要文本颜色 */
   max-width: 600px;
-  margin: 0 auto 20px;
+  margin:  20px 20px;
 }
 
 .main-buttons {
+  margin-top: 20px;
   display: flex;
-  flex-direction: column;
-  /* 垂直排列按钮 */
   gap: 15px;
-  /* 按钮间距 */
   width: 100%;
-  max-width: 200px;
+ justify-content: center;
 }
 
-.main-buttons .ant-btn {
+.main-buttons button {
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: bold;
   background-color: rgb(244, 237, 237);
-  /* 按钮背景色 */
   color: rgb(42, 41, 41);
+  width: 200px;
+  height: 60px;
+  margin-right: 20px;
 }
 
-.main-buttons .ant-btn:hover {
-  background-color: rgb(210, 208, 208);
-  /* 按钮悬停背景色 */
+.start:hover {
+  background-image: linear-gradient(to right, #6253e1, #852D91);
+  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
 }
-
-/* Footer Section */
-.footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #1a1a1a;
-  color: #fff;
-}
-
-.footer p {
-  margin: 0;
-  font-size: 14px;
+.know:hover{
+  background-color: #b6b6b6;
 }

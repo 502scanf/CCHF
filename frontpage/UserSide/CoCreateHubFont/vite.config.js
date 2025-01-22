@@ -10,6 +10,7 @@ export default defineConfig({
   resolve:{
     alias:{
       '@assets': path.resolve('src/assets'),
+      '@page': path.resolve('src/page')
     }
   }
 })
