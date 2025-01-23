@@ -1,3 +1,10 @@
+
 .main-container {
-    min-height: calc(100vh - 64px)
+    height: 100%;
+    overflow-y: scroll; /* 保持垂直滚动功能 */
+    scrollbar-width: none; /* 针对 Firefox */
+    -ms-overflow-style: none; /* 针对 IE 和 Edge */
+    /*overflow: hidden; !* 禁止滚动，隐藏滚动条 *!*/
 }
+
+

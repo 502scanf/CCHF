@@ -23,10 +23,11 @@ const Main = () => {
                 <Content
                     style={{
                         margin: '24px 16px',
-                        padding: 24,
-                        minHeight: 280,
+                        padding: 10,
+                        minHeight: 300,
                         background: colorBgContainer,
                         borderRadius: borderRadiusLG,
+
                     }}
                 >
                     <Outlet/>

@@ -11,7 +11,7 @@ const CommonHeader = ({collapsed}) =>{
         {
             key: '1',
             label: (
-                <a target="_blank" rel="noopener noreferrer">
+                <a target="_self" rel="noopener noreferrer" href={'/User'}>
                     个人中心
                 </a>
             ),

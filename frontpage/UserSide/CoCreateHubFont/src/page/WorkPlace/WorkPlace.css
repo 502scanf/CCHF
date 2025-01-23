@@ -81,3 +81,8 @@ html, body {
     border-radius: 50%;
     margin: 15px 15px;
 }
+.loading{
+    width: 100px;
+    height: 100px;
+    margin: 10%;
+}

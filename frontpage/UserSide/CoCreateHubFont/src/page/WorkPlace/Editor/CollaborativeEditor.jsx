@@ -4,42 +4,43 @@ import {useEffect, useState} from "react";
 import * as Y from 'yjs'
 import {LiveblocksYjsProvider} from "@liveblocks/yjs";
 import {SlateEditor} from "./SlateEditor.jsx";
- const CollaborativeEditor = ()=>{
-    const room = useRoom()
-    const [connected,setConnected] = useState(false)
-    const [shareType, setShareType] = useState(null)
-    const [provider, setProvider] = useState(null)
+import loading from '@assets/loading.svg'
+ const CollaborativeEditor = ()=> {
+     const room = useRoom()
+     const [connected, setConnected] = useState(false)
+     const [shareType, setShareType] = useState(null)
+     const [provider, setProvider] = useState(null)
 
-    useEffect(()=>{
-        const yDoc = new Y.Doc()
-        const sharedDoc = yDoc.get('richText',Y.XmlText)
-        const yProvider = new LiveblocksYjsProvider(room,yDoc)
+     useEffect(() => {
+         const yDoc = new Y.Doc()
+         const sharedDoc = yDoc.get('richText', Y.XmlText)
+         const yProvider = new LiveblocksYjsProvider(room, yDoc)
 
-        yProvider.on('sync', setConnected)
-        setShareType(sharedDoc)
-        setProvider(yProvider)
+         yProvider.on('sync', setConnected)
+         setShareType(sharedDoc)
+         setProvider(yProvider)
 
-        return()=>{
-            yDoc?.destroy()
-            yProvider?.off('sync',setConnected)
-            yProvider?.destroy()
-        }
+         return () => {
+             yDoc?.destroy()
+             yProvider?.off('sync', setConnected)
+             yProvider?.destroy()
+         }
 
-    },[room])
+     }, [room])
 
-    if (!connected||!shareType||!provider)
-        return <div>Building...</div>
+     if (!connected || !shareType || !provider)
+         return <img src={loading} alt={loading} className="loading"/>
 
-    return(
-        <SlateEditor shareType={shareType} provider={provider}/>
-    )
-}
+     return (
+         <SlateEditor shareType={shareType} provider={provider}/>
+     )
+ }
 
 export const HoleEditor = ({roomId})=>{
     return (
         <LiveblocksProvider publicApiKey="pk_prod_xGHxC0g4wwRVebwmmYrsHYNbllxddxg18y6OPAn41HUkJoibz95b5LqVFoAgJX1t">
             <RoomProvider id={roomId}>
-                <ClientSideSuspense fallback={<div>Loading…</div>}>
+                <ClientSideSuspense fallback={<img src={loading} alt={loading} className="loading"/>}>
                     <CollaborativeEditor />
                 </ClientSideSuspense>
             </RoomProvider>
