@@ -10,21 +10,9 @@ const User = ()=>{
 
     const [email, setEmail] = useState("1234567890@qq.com");
     const [name, setname] = useState("User123");
+    const [password,setpassword] = useState("1234566789");
     const [notifications, setNotifications] = useState(false);
     const [disturb, setDisturb] = useState(true);
-    const [expandedSections, setExpandedSections] = useState({
-        basic: true,
-        message: true,
-        file: true,
-        contact: true,
-    });
-
-    const toggleSection = (section) => {
-        setExpandedSections(prevState => ({
-            ...prevState,
-            [section]: !prevState[section],
-        }));
-    };
 
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
@@ -40,6 +28,19 @@ const User = ()=>{
         handleClose();
     };
 
+    const [avatar, setAvatar] = useState(null);
+
+    const handleAvatarChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setAvatar(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <div className="userSetting">
             <div className="userTop">
@@ -49,20 +50,17 @@ const User = ()=>{
             <div className="Option">
                 <h3>
                     基本设置
-                    <button className="expandButton" onClick={() => toggleSection('basic')}>
-                        {expandedSections.basic ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
-                    </button>
                 </h3>
                 <hr/>
                 {expandedSections.basic && (
                     <div className="UserInfo">
-                        <div className="userLogo"><GroupIcon/></div>
+                        <image className="userLogo"><GroupIcon/></image>
                         <div className="userDetails">
                             <span className="spanHead">用户名: {name}</span>
                             <span className="spanHead">邮箱: {email}</span>
                         </div>
                         <button variant="contained" color="primary" onClick={handleClickOpen}>编辑信息</button>
-                        <Dialog open={open} onClose={handleClose}>
+                        <Dialog classes="InfoEdit" open={open} onClose={handleClose}>
                             <DialogTitle>编辑个人信息</DialogTitle>
                             <DialogContent>
                                 <TextField
@@ -84,6 +82,28 @@ const User = ()=>{
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
+                                <TextField
+                                    margin="dense"
+                                    label="新密码"
+                                    type="password"
+                                    fullWidth
+                                    variant="outlined"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <input
+                                    accept="image/*"
+                                    style={{ display: 'none' }}
+                                    id="contained-button-file"
+                                    multiple
+                                    type="file"
+                                    onChange={handleAvatarChange}
+                                />
+                                <label htmlFor="contained-button-file">
+                                    <Button variant="contained" component="span">
+                                        上传头像
+                                    </Button>
+                                </label>
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={handleClose} color="secondary">
@@ -100,9 +120,6 @@ const User = ()=>{
             <div className="Option">
                 <h3>
                     消息设置
-                    <button className="expandButton" onClick={() => toggleSection('message')}>
-                        {expandedSections.message ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
-                    </button>
                 </h3>
                 <hr/>
                 {expandedSections.message && (
@@ -128,9 +145,9 @@ const User = ()=>{
             <div className="Option">
                 <h3>
                     文件管理
-                    <button className="expandButton" onClick={() => toggleSection('file')}>
-                        {expandedSections.file ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
-                    </button>
+                    {/*<button className="expandButton" onClick={() => toggleSection('file')}>*/}
+                    {/*    {expandedSections.file ? <ExpandLessIcon/> : <ExpandMoreIcon/>}*/}
+                    {/*</button>*/}
                 </h3>
                 <hr/>
                 {expandedSections.file && (
@@ -150,9 +167,6 @@ const User = ()=>{
             <div className="Option">
                 <h3>
                     联系我们
-                    <button className="expandButton" onClick={() => toggleSection('contact')}>
-                        {expandedSections.contact ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
-                    </button>
                 </h3>
                 <hr/>
                 {expandedSections.contact && (
@@ -167,8 +181,8 @@ const User = ()=>{
                 )}
             </div>
             <div className="Option">
-                <button className="hover1">注消</button>
-                <button className="hover2">登出</button>
+                <button className="hover1">注销账号</button>
+                <button className="hover2">退出登录</button>
             </div>
         </div>
     )
