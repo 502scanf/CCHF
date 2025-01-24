@@ -2,7 +2,7 @@ import React from "react";
 import {
     AppstoreAddOutlined,
     FieldTimeOutlined,
-    HomeOutlined,
+    DeleteOutlined,
     ShareAltOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
@@ -34,24 +34,24 @@ const CommonAside = ({collapsed , setIsShow}) => {
             <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={['/home']}
+                defaultSelectedKeys={['/workplacemanage']}
                 items={[
 
                     {
-                        key: '/recent',
+                        key: '/workplacemanage',
                         icon: <FieldTimeOutlined />,
                         label: '工作区管理',
 
                     },
                     {
-                        key: '/share',
+                        key: '/filespace',
                         icon: <ShareAltOutlined />,
                         label: '文件区',
 
                     },
                     {
                         key: '/recycle',
-                        icon: <HomeOutlined />,
+                        icon: <DeleteOutlined />,
                         label: '回收站',
                     },
 

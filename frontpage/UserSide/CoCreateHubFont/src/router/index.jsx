@@ -2,10 +2,12 @@ import User from '../page/User/User.jsx'
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import App from "../App.jsx";
 import Main from "../page/Main/index.jsx";
-import {Home} from "@mui/icons-material";
 import Helper from "../page/User/Helper.jsx";
+import WorkPlaceManage from "@page/WorkPlaceManage/WorkPlaceManage.jsx";
 import Index from "@page/Top";
 import Login from "@page/login/Login.jsx";
+import FileSpace from "@page/FileSpace/FileSpace.jsx";
+import Recycle from "@page/Recycle/Recycle.jsx";
 
 const router = createBrowserRouter([
     {
@@ -21,26 +23,23 @@ const router = createBrowserRouter([
         Component: Main,
         children:[
             //重定向
+            // {
+            //     path: '/',
+            //     element: <Navigate to="workPlaceManage" replace={true}/>
+            // },
             {
-                path: '/',
-                element: <Navigate to="home" replace={true}/>
+                path:'workPlaceManage',
+                Component: WorkPlaceManage
             },
             {
-                path:'home',
-                Component: Home
+                path:'fileSpace',
+                Component: FileSpace
             },
             {
-                path:'recent',
-                Component: Home
+                path:'recycle',
+                Component: Recycle
             },
-            {
-                path:'share',
-                Component: Home
-            },
-            {
-                path:'collection',
-                Component: Home
-            },
+
 
         ]
     },
