@@ -41,7 +41,7 @@
     position: relative;
     width: 760px;
     height: 130px;
-    background-color: #2a2a2a;
+    background-color: transparent;
     border-radius: 10px;
     cursor: pointer;
     display: flex;

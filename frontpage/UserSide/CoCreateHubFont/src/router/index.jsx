@@ -4,10 +4,8 @@ import App from "../App.jsx";
 import Main from "../page/Main/index.jsx";
 import {Home} from "@mui/icons-material";
 import Helper from "../page/User/Helper.jsx";
-
 import Index from "@page/Top";
 import Login from "@page/login/Login.jsx";
-
 
 const router = createBrowserRouter([
     {
@@ -44,11 +42,10 @@ const router = createBrowserRouter([
                 Component: Home
             },
 
-
         ]
     },
     {
-        path:'/work',
+        path:'/work/:roomId',
         element: <App/>
     },
     {

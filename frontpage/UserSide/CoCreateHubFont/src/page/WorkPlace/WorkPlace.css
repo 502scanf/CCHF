@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin: 0; /* 去除默认的 margin */
     padding: 0; /* 去除默认的 padding */
+    background-color: #525252;
 }
 
 #root{
