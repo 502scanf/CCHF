@@ -23,10 +23,10 @@ const router = createBrowserRouter([
         Component: Main,
         children:[
             //重定向
-            // {
-            //     path: '/',
-            //     element: <Navigate to="workPlaceManage" replace={true}/>
-            // },
+            {
+                path: '/',
+                element: <Navigate to="workPlaceManage" replace={true}/>
+            },
             {
                 path:'workPlaceManage',
                 Component: WorkPlaceManage
