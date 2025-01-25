@@ -1,5 +1,5 @@
 import User from '../page/User/User.jsx'
-import {createBrowserRouter, Navigate} from "react-router-dom";
+import {createBrowserRouter, Navigate, createHashRouter} from "react-router-dom";
 import App from "../App.jsx";
 import Main from "../page/Main/index.jsx";
 import {Home} from "@mui/icons-material";
@@ -7,7 +7,7 @@ import Helper from "../page/User/Helper.jsx";
 import Index from "@page/Top";
 import Login from "@page/login/Login.jsx";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path:'/top',
         element:<Index/>
