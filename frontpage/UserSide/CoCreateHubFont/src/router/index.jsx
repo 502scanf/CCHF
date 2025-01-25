@@ -9,7 +9,7 @@ import Login from "@page/login/Login.jsx";
 import FileSpace from "@page/FileSpace/FileSpace.jsx";
 import Recycle from "@page/Recycle/Recycle.jsx";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path:'/top',
         element:<Index/>
