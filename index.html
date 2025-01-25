@@ -12,4 +12,10 @@
   <body>
     <div id="root"></div>
   </body>
+  <script>
+    const segments = window.location.pathname.split('/');
+    if (segments.length > 1 && segments[1] !== 'CCHF') {
+      window.location.href = '/CCHF/';
+    }
+  </script>
 </html>
