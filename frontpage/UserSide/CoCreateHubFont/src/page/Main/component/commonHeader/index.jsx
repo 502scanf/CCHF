@@ -3,17 +3,17 @@ import { MenuFoldOutlined, MenuUnfoldOutlined,UserOutlined} from '@ant-design/ic
 import './index.css'
 import { useDispatch } from 'react-redux';
 import { collapseMenu } from '../../../store/reducers/tab.js'
+import {useNavigate} from "react-router-dom";
 
 const { Header } = Layout;
 
 const CommonHeader = ({collapsed}) =>{
+    const navigate = useNavigate();
     const items = [
         {
             key: '1',
             label: (
-                <a target="_self" rel="noopener noreferrer" href={'/User'}>
-                    个人中心
-                </a>
+                <span onClick={()=>navigate('/User')}>个人中心</span>
             ),
         },
         {

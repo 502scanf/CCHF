@@ -42,16 +42,15 @@
   align-items: center;
 }
 
-.header-nav a {
+.header-nav span {
   color: #fff;
   margin: 0 10px;
   text-decoration: none;
   font-weight: bold;
+  cursor: pointer;
 }
 
-.header-nav a:hover {
-  text-decoration: underline;
-}
+
 
 /* Main Section */
 .main-content {
