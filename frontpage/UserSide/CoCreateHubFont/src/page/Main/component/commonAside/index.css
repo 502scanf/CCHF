@@ -4,6 +4,7 @@
     line-height: 80px;
     font-weight: bold;
     font-size: 25px;
+    cursor:pointer;
 }
 
 .logo{
@@ -26,5 +27,28 @@
     font-size: 18px;
 }
 
-
-
+.logoHead{
+    cursor: pointer
+}
+.buildWork{
+    cursor: pointer;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #c2c2c2;
+    padding-left: 24px;
+}
+.buildWork:hover{
+    color: white;
+}
+.buildWork span{
+    margin-left: 10px;
+}
+.buildButton{
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 16px;
+}

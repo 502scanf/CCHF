@@ -1,4 +1,3 @@
-
 import {HoleEditor} from "./Editor/CollaborativeEditor.jsx";
 import './WorkPlace.css'
 import logo from  '@assets/logo.png'
@@ -13,8 +12,8 @@ const WorkPlace = ({roomId})=>{
     return (
         <div className="workPlace">
             <div className="editorHead">
-                <img src={logo} alt={logo} />
-                <span >CoCreateHub</span>
+                <img src={logo} alt={logo} onClick={()=>{navigate(-1)}}/>
+                <span onClick={()=>{navigate('/')}}>CoCreateHub</span>
                 <div className="mesAuser">
                     <div className="mes">
                         <NoTi/>

@@ -4,7 +4,10 @@
     overflow-y: scroll; /* 保持垂直滚动功能 */
     scrollbar-width: none; /* 针对 Firefox */
     -ms-overflow-style: none; /* 针对 IE 和 Edge */
-    /*overflow: hidden; !* 禁止滚动，隐藏滚动条 *!*/
+    position: relative;
 }
-
+.main{
+    position: relative;
+    height: 100vh;
+}
 

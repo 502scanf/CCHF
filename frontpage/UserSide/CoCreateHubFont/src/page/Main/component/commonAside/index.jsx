@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 import React from "react";
 import {
+    AppstoreAddOutlined,
     FieldTimeOutlined,
-    HomeOutlined,
+    DeleteOutlined,
     ShareAltOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
@@ -12,10 +12,10 @@ import logo from  '@assets/logo.png'
 
 const { Sider} = Layout;
 
-// eslint-disable-next-line react/prop-types
-const CommonAside = ({collapsed}) => {
+const CommonAside = ({collapsed , setIsShow}) => {
     //实现菜单跳转
     const navigate = useNavigate();
+
     const selectMenu = (e) =>{
         console.log(e)
         navigate(e.key);
@@ -23,59 +23,42 @@ const CommonAside = ({collapsed}) => {
 
     return (
         <Sider trigger={null} collapsed={collapsed} width={250}>
-            <img src={logo} alt="React Logo" className="logo"/>
-            {!collapsed&&<span className="app-name">CoCreateHub</span>}
+            <div className="logoHead" onClick={()=>navigate('/Top')}>
+                <img src={logo} alt="React Logo" className="logo"/>
+                {!collapsed&&<span className="app-name">CoCreateHub</span>}
+            </div>
+            <div className="buildWork" onClick={() => setIsShow()}>
+                <AppstoreAddOutlined/>
+                {!collapsed&&<span> 新建工作区</span>}
+            </div>
             <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={['/home']}
+                defaultSelectedKeys={['/workplacemanage']}
                 items={[
+
                     {
-                        key: '/newspace',
-                        icon: <HomeOutlined />,
-                        label: '新建工作区',
-                    },
-                    {
-                        key: '/recent',
+                        key: '/workplacemanage',
                         icon: <FieldTimeOutlined />,
                         label: '工作区管理',
-                        children: [
-                            {
-                                key: '/recent/pageOne',
-                                label: 'pageOne'
-                            },
-                            {
-                                key: '/recent/pageTwo',
-                                label: 'pageTwo'
-                            }
-                        ]
+
                     },
                     {
-                        key: '/share',
+                        key: '/filespace',
                         icon: <ShareAltOutlined />,
                         label: '文件区',
-                        children: [
-                            {
-                                key: '/recent/pageOne',
-                                label: 'pageOne'
-                            },
-                            {
-                                key: '/recent/pageTwo',
-                                label: 'pageTwo'
-                            }
-                        ]
+
                     },
                     {
                         key: '/recycle',
-                        icon: <HomeOutlined />,
+                        icon: <DeleteOutlined />,
                         label: '回收站',
                     },
 
                 ]}
                 style={{
                     height: '100%',
-                    margin: '15px auto',
-
+                    fontWeight:'bold'
                 }}
                 onClick={selectMenu}
             />

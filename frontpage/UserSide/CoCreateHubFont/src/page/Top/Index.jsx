@@ -1,5 +1,5 @@
 import React from "react";
-import './Index.css'
+import './top.css'
 import logo from '@assets/logo.png'
 import {useNavigate} from "react-router-dom";
 const ReactNativeHome = () => {
@@ -8,7 +8,7 @@ const ReactNativeHome = () => {
     <div className="react-native-home">
       {/* Header Section */}
       <header className="header">
-        <div className="header-logo">
+        <div className="headerLogo">
           <img src={logo} alt={logo} className="logo" />
           <span>CoCreateHub 协创空间</span>
         </div>
