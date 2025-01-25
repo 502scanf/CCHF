@@ -7,7 +7,7 @@ import path from 'path'
 export default defineConfig({
 
   plugins: [react()],
-  base:"/CCHF",
+  base:"/CCHF/",
   resolve:{
     alias:{
       '@assets': path.resolve('src/assets'),
