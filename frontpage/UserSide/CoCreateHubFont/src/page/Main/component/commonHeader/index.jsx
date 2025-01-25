@@ -42,6 +42,7 @@ const CommonHeader = ({collapsed}) =>{
                     width: 32,
                     height: 32,
                     background: '#fff',
+                    color: '#000000',
                 }}
                 onClick={setCollapse}
             />
