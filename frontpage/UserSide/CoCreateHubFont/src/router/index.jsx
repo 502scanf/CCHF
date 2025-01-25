@@ -1,5 +1,5 @@
 import User from '../page/User/User.jsx'
-import {createBrowserRouter, Navigate, createHashRouter} from "react-router-dom";
+import { Navigate, createHashRouter} from "react-router-dom";
 import App from "../App.jsx";
 import Main from "../page/Main/index.jsx";
 import {Home} from "@mui/icons-material";
