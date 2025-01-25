@@ -1,5 +1,5 @@
 import User from '../page/User/User.jsx'
-import { Navigate, createHashRouter} from "react-router-dom";
+import { Navigate, createHashRouter, createBrowserRouter} from "react-router-dom";
 import App from "../App.jsx";
 import Main from "../page/Main/index.jsx";
 import Helper from "../page/User/Helper.jsx";
@@ -9,7 +9,7 @@ import Login from "@page/login/Login.jsx";
 import FileSpace from "@page/FileSpace/FileSpace.jsx";
 import Recycle from "@page/Recycle/Recycle.jsx";
 
-const router = createHashRouter([
+const router = createBrowserRouter([
     {
         path:'/top',
         element:<Index/>

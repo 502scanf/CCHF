@@ -3,6 +3,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import GroupIcon from '@mui/icons-material/Group';
+import {useNavigate} from "react-router-dom";
 
 const User = ()=>{
 
@@ -13,6 +14,7 @@ const User = ()=>{
     const [disturb, setDisturb] = useState(true);
 
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -42,13 +44,11 @@ const User = ()=>{
     return (
         <div className="userSetting">
             <div className="userTop">
-                <button className="backButton" onClick={backFunction}><ArrowBackIcon /></button>
+                <button className="backButton" onClick={()=>navigate(-1)}><ArrowBackIcon /></button>
                 <span>用户设置</span>
             </div>
             <div className="Option">
-                <h3>
-                    基本设置
-                </h3>
+
                 <hr/>
                     <div className="UserInfo">
                         <image className="userLogo"><GroupIcon/></image>
@@ -143,9 +143,6 @@ const User = ()=>{
                 <hr/>
                     <div className="Inform">
                         <div className="fileOption">
-                            <span className="spanHead">工作文件的处理设置</span>
-                        </div>
-                        <div className="fileOption">
                             <span className="spanHead">设置文件保存时间</span>
                         </div>
                         <div className="fileOption">
@@ -175,8 +172,6 @@ const User = ()=>{
     )
 }
 
-function backFunction() {
 
-}
 
 export default User;

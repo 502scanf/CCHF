@@ -5,8 +5,8 @@
     align-items: center;
     justify-content: flex-start;
     /*padding: 20px;*/
-    background-color: #001529;
-    overflow: hidden;
+    background-color: #202021;
+    /*overflow: hidden;*/
 }
 
 /* 顶部样式 */
@@ -18,25 +18,28 @@
     padding: 10px 15px;
     background-color: transparent;
     color: #ddd;
-    border-bottom: 1px solid #ddd;
+
     margin-bottom: 20px;
 }
 
 .backButton{
+    display: flex;
     position: absolute;
     left: 0;
     cursor: pointer;
     color: #ddd;
     background-color: transparent;
     opacity: 0.5;
-    width: 66px;
-    height: 66px;
+    width: 50px;
+    height: 40px;
     margin-left: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .backButton svg{
-    width: 36px;
-    height: 36px;
+    width: 20px;
+    height: 20px;
 }
 
 .userTop span {
@@ -47,7 +50,7 @@
 .Option {
     width: 666px;
     padding: 6px;
-    background-color: #001529;
+    background-color: transparent;
     color: #dddd;
     border-radius: 8px;
     border-color: white;
@@ -69,7 +72,7 @@
 
 .Option hr {
     border: none;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #7a7a7a;
     margin: 5px 0;
 }
 
@@ -88,7 +91,7 @@
     align-items: center;
     height: 64px;
     justify-content: space-between;
-    background-color: #001529;
+    background-color: transparent;
     font-size: 1em;
 }
 
@@ -209,20 +212,21 @@ input:checked + .slider:before {
 }
 
 .hover1{
-    /*margin-left: 26px;*/
+
     float: left;
-    background-color: #f85757;
     color: #fff;
 }
 .hover1:hover{
+    background-color: #f85757;
     border: 1px solid #f85757;
 }
 .hover2{
     float: right;
-    background-color:  #54f387;
+
     color: #fff;
 }
 .hover2:hover{
+    background-color:  #54f387;
     border: 1px solid #54f387;
 }
 
