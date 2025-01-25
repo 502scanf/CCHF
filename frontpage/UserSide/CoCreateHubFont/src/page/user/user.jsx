@@ -1,7 +1,5 @@
 import './user.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import GroupIcon from '@mui/icons-material/Group';
@@ -52,7 +50,6 @@ const User = ()=>{
                     基本设置
                 </h3>
                 <hr/>
-                {expandedSections.basic && (
                     <div className="UserInfo">
                         <image className="userLogo"><GroupIcon/></image>
                         <div className="userDetails">
@@ -115,14 +112,12 @@ const User = ()=>{
                             </DialogActions>
                         </Dialog>
                     </div>
-                )}
             </div>
             <div className="Option">
                 <h3>
                     消息设置
                 </h3>
                 <hr/>
-                {expandedSections.message && (
                     <div className="Inform">
                         <div className="messageOption">
                             <span className="spanHead">消息免打扰</span>
@@ -140,17 +135,12 @@ const User = ()=>{
                             </label>
                         </div>
                     </div>
-                )}
             </div>
             <div className="Option">
                 <h3>
                     文件管理
-                    {/*<button className="expandButton" onClick={() => toggleSection('file')}>*/}
-                    {/*    {expandedSections.file ? <ExpandLessIcon/> : <ExpandMoreIcon/>}*/}
-                    {/*</button>*/}
                 </h3>
                 <hr/>
-                {expandedSections.file && (
                     <div className="Inform">
                         <div className="fileOption">
                             <span className="spanHead">工作文件的处理设置</span>
@@ -162,14 +152,12 @@ const User = ()=>{
                             <span className="spanHead">清理缓存文件</span>
                         </div>
                     </div>
-                )}
             </div>
             <div className="Option">
                 <h3>
                     联系我们
                 </h3>
                 <hr/>
-                {expandedSections.contact && (
                     <div className="Inform">
                         <div className="spanTip">
                             <span className="spanHead">常见问题</span>
@@ -178,7 +166,6 @@ const User = ()=>{
                             <span className="spanHead">反馈与建议</span>
                         </div>
                     </div>
-                )}
             </div>
             <div className="Option">
                 <button className="hover1">注销账号</button>
