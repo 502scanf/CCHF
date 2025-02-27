@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cchf?serverTimezone=UTC
+    username: root
+    password: 2018
+
+mybatis:
+  mapper-locations:  classpath:mapper/*.xml
+  type-aliases-package: cchf.back.entity
+  configuration:
+    map-underscore-to-camel-case: true
+cchf:
+  jwt:
+    user-secret-key: cocreatehub
+    user-ttl: 7200000
+    user-token: cch

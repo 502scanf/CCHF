@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cchf.back.mapper.UserMapper">
+    <insert
+            id="insert">
+        insert into user( uid, uname, mail, password, logo)
+            values (#{uid}, #{uname}, #{mail},#{password},#{logo})
+    </insert>
+
+    <select
+            id="getByMail"
+            resultType="cchf.back.entity.User">
+        select *
+        from user where mail = #{login};
+    </select>
+    <select
+            id="getByName"
+            resultType="cchf.back.entity.User">
+        select *
+        from user where uname = #{login}
+    </select>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cchf.back.mapper.DocMapper">
+
+    <insert
+            id="docBuild">
+        insert into doc(docid, docname, doctype, docroomid, status, time)
+            values (#{docid}, #{docname}, #{doctype}, #{docroomid}, #{status}, #{time})
+    </insert>
+    <update
+            id="recycleDoc">
+        update doc
+            set status = -1
+            where docname = #{docname} and doctype = #{doctype}
+
+    </update>
+    <select
+            id="getdoc"
+            resultType="cchf.back.vo.DocBuildVo">
+        select docname, doctype, status, time
+            from doc
+            where docname=#{docname} and
+                  doctype=#{doctype}
+
+    </select>
+    <select
+            id="getDocList"
+            resultType="cchf.back.vo.DocBuildVo">
+        select docname, doctype, doctype, status
+        from doc
+            where status != -1
+                and docroomid = #{roomid}
+    </select>
+</mapper>

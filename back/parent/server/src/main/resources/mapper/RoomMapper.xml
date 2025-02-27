@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cchf.back.mapper.RoomMapper">
+
+    <insert
+            id="insert">
+        insert into room( roomname, roomid, onerid, status, time)
+            values (#{roomname}, #{roomid}, #{onerid}, #{status}, #{time})
+    </insert>
+    <update
+            id="recycleRoom">
+        update room
+            set status = -1
+            where roomname =#{roomname}
+    </update>
+    <select
+            id="getRoom"
+            resultType="cchf.back.vo.RoomBuildVo">
+        select *
+        from room where roomname = #{roomname};
+    </select>
+
+    <select
+            id="getRoomList"
+            resultType="cchf.back.vo.RoomBuildVo">
+        select roomname, roomid, onerid, status, time
+        from room
+           where status != -1
+             and onerid =#{onerid}
+    </select>
+</mapper>
