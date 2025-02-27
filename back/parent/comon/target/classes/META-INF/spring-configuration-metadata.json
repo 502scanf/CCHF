@@ -1,0 +1,28 @@
+{
+  "groups": [
+    {
+      "name": "cchf.jwt",
+      "type": "cchf.back.properties.JwtProperties",
+      "sourceType": "cchf.back.properties.JwtProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "cchf.jwt.user-secret-key",
+      "type": "java.lang.String",
+      "sourceType": "cchf.back.properties.JwtProperties"
+    },
+    {
+      "name": "cchf.jwt.user-token",
+      "type": "java.lang.String",
+      "sourceType": "cchf.back.properties.JwtProperties"
+    },
+    {
+      "name": "cchf.jwt.user-ttl",
+      "type": "java.lang.Long",
+      "sourceType": "cchf.back.properties.JwtProperties",
+      "defaultValue": 0
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,13 @@
+
+.main-container {
+    height: 100%;
+    overflow-y: scroll; /* 保持垂直滚动功能 */
+    scrollbar-width: none; /* 针对 Firefox */
+    -ms-overflow-style: none; /* 针对 IE 和 Edge */
+    position: relative;
+}
+.main{
+    position: relative;
+    height: 100vh;
+}
+
