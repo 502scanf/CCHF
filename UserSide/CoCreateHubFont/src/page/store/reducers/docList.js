@@ -22,5 +22,5 @@ const fetchDoclist = ()=>{
 }
 
 export {fetchDoclist}
-const reducer = docListSlice.reducer
-export default reducer
+const docLstReducer = docListSlice.reducer
+export default docLstReducer

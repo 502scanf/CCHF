@@ -30,7 +30,7 @@ const ReactNativeHome = () => {
           </p>
         </div>
         <div className="main-buttons">
-          <button className="start" onClick={()=>navigate('/')}>开始使用</button>
+          <button className="start" onClick={()=>navigate('/workPlace')}>开始使用</button>
           <button className="know" onClick={()=>navigate('/Helper')}>了解更多</button>
         </div>
       </main>
