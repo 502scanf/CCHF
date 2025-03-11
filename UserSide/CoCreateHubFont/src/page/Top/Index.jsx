@@ -13,7 +13,10 @@ const ReactNativeHome = () => {
           <span>CoCreateHub 协创空间</span>
         </div>
         <nav className="header-nav">
-          <span onClick={()=>navigate('/login')}>登录</span>
+          <span className="loginButton" onClick={()=>navigate('/login')}>登录</span>
+          <div className="signButton">
+            <span onClick={() => navigate('/sign')}>注册</span>
+          </div>
         </nav>
       </header>
 

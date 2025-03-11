@@ -105,3 +105,7 @@
 .know:hover{
   background-color: #b6b6b6;
 }
+.signButton{
+  border-left: solid 1px #8f8f8f;
+
+}

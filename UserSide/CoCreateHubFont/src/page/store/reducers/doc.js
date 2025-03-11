@@ -2,10 +2,11 @@ import {createSlice}  from "@reduxjs/toolkit";
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const docListSlice = createSlice({
-    name:'docList',
+const docSlice = createSlice({
+    name:'doc',
     initialState:{
-        docList:[]
+        docList:[],
+
     },
     reducers:{
         setDocList(state, action){
@@ -13,7 +14,7 @@ const docListSlice = createSlice({
         }
     }
 })
-const {setDocList} = docListSlice.actions
+const {setDocList} = docSlice.actions
 const fetchDoclist = ()=>{
     return async (dispatch)=>{
         const response = await axios.get(`${BASE_URL}/docList`)
@@ -22,5 +23,5 @@ const fetchDoclist = ()=>{
 }
 
 export {fetchDoclist}
-const docLstReducer = docListSlice.reducer
-export default docLstReducer
+const docReducer = docSlice.reducer
+export default docReducer

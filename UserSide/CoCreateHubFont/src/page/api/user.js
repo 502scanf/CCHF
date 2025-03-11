@@ -15,3 +15,10 @@ export function loginApi (loginData){
         data: loginData
     })
 }
+export function editUserApi(editData){
+    return cchRequest({
+        url: '/user/edit',
+        method:'post',
+        data:editData
+    })
+}

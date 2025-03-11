@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Form, Input,   message } from "antd";
 import './sign.css'
-import logo from "@assets/logo.png"; // 引入图片
+import logo from "@assets/logo.png";
+import {useDispatch} from "react-redux";
+import {signUser} from "@page/store/reducers/user.js";
+import {useNavigate} from "react-router-dom"; // 引入图片
 
 const Sign= () => {
     const [form] = Form.useForm();
@@ -9,11 +12,17 @@ const Sign= () => {
 
     const onFinishFailed = (errorInfo) => {
         message.error("请检查表单信息是否正确！");
-        console.error("表单验证失败:", errorInfo);
+        console.error("注册失败:", errorInfo);
     };
 
-    const onFinish = (values)=>{
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const onFinish = async (values)=>{
         console.log(values)
+        await dispatch(signUser(values))
+        navigate('/login')
+        message.success('注册成功')
     }
 
     return (

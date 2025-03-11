@@ -10,7 +10,7 @@ import buildLogo from '@assets/buildLogo.svg'
 import buildLogo2 from '@assets/buildLogo2.svg'
 import doc from '@assets/doc.svg'
 import {useDispatch, useSelector} from "react-redux";
-import {fetchDoclist} from "@page/store/reducers/docList.js";
+import {fetchDoclist} from "@page/store/reducers/doc.js";
 import {DocItem} from "./Editor/component/index.jsx"
 import {Button, Form, Input, message} from "antd";
 import {PopForm} from "@page/component/Form.jsx";

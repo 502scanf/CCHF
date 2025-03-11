@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
         String uid = uIdCreate.generateId();
         User user = User.builder()
                 .uid(uid)
-                .logo(signDto.getLogo())
+                .logo("sljdfaksjfklsf")
                 .uname(signDto.getUname())
                 .mail(signDto.getMail())
                 .password(signDto.getPassword())

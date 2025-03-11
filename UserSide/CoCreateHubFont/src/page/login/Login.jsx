@@ -11,8 +11,8 @@ const Login= () => {
   // const [autoLogin, setAutoLogin] = useState(false);
 
   const onFinishFailed = (errorInfo) => {
-    message.error("请检查表单信息是否正确！");
-    console.error("表单验证失败:", errorInfo);
+    message.error("用户还没注册");
+    console.error("登录失败:", errorInfo);
   };
 
   const dispatch = useDispatch()
