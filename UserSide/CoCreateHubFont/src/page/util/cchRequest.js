@@ -5,7 +5,7 @@ import {getToken} from "@page/util/token.js";
 const BASE_URL = "/api"
 const cchRequest = axios.create({
     baseURL: BASE_URL,
-    timeout: 5000,
+    timeout: 5000000,
 })
 
 cchRequest.interceptors.request.use((config)=>{

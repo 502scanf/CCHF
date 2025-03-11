@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {setToken as _setToken, getToken} from "@page/util/token.js";
+import {getToken, setToken} from "@page/util/token.js";
 import {loginApi} from "@page/api/user.js";
 
 const userSlice = createSlice({
@@ -7,25 +7,23 @@ const userSlice = createSlice({
     initialState:{
         token: getToken() || ' ',
     },
-    reduces:{
-        setToken(state, action){
+    reducers:{
+        sT(state,action){
             state.token = action.payload
-            _setToken(action.payload)
-        }
+            setToken(action.payload)
+    }
     }
 })
 
-const {setToken} = userSlice.actions
+const {sT} = userSlice.actions;
 const userReducer = userSlice.reducer
 
-const fetchUser = (loginData)=>{
+const fetchUser = (loginData) =>{
     return async (dispatch)=>{
-       const res = await loginApi(loginData)
-        dispatch(setToken(res.data.token))
+        const res = await loginApi(loginData)
+        dispatch(sT(res.data.token))
     }
 }
 
-export {fetchUser ,setToken}
+export {fetchUser, sT}
 export default userReducer
-
-

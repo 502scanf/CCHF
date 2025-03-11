@@ -9,6 +9,7 @@ const tabSlice = createSlice({
         collapseMenu(state) {
             state.isCollapsed = !state.isCollapsed;
         }
+
     }
 })
 
