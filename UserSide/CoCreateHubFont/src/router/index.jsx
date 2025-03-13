@@ -56,6 +56,7 @@ const router = createBrowserRouter([
     {
         path:'/User',
         element: <AuthRoute><User/></AuthRoute>
+        // element: <User/>
     },
     {
         path:'/Helper',
