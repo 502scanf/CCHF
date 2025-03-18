@@ -1,7 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getToken, setToken} from "@page/util/token.js";
+import {getToken, setToken, loginTime} from "@page/util/token.js";
 import {loginApi, signApi} from "@page/api/user.js";
-import sign from "@page/sign/sign.jsx";
 
 let R = Math.random().toString(16).split(".")[1]
 let color = "#"+R.slice(0,6)
@@ -13,6 +12,7 @@ const userSlice = createSlice({
         uname: null,
         mail: null,
         logo:null,
+        loginTime: null,
         backColor: null
     },
     reducers:{
@@ -21,7 +21,7 @@ const userSlice = createSlice({
             setToken(action.payload)
         },
         sN(state, action){
-            state.name = action.payload
+            state.uname = action.payload
         },
         sM(state, action){
             state.mail = action.payload
@@ -31,11 +31,15 @@ const userSlice = createSlice({
         },
         sC(state, action){
             state.backColor = action.payload
+        },
+        sTime(state, action){
+            state.tTime = action.payload
+            loginTime(action.payload)
         }
     }
 })
 
-const {sT,sN, sL, sM, sC} = userSlice.actions;
+const {sT,sN, sL, sM, sC, sTime} = userSlice.actions;
 const userReducer = userSlice.reducer
 
 const fetchUser = (loginData) =>{
@@ -45,6 +49,7 @@ const fetchUser = (loginData) =>{
         dispatch(sN(res.data.uname))
         dispatch(sM(res.data.mail))
         dispatch(sL(res.data.logo))
+        dispatch(sTime(res.data.loginTime))
         dispatch(sC(color))
     }
 }

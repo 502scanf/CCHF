@@ -18,6 +18,7 @@ import {PopForm} from "@page/component/Form.jsx";
 //工作区主程序，房间id，key设置。。。
 const WorkPlace = ({roomId})=>{
 
+    const {uname} = useSelector(state => state.user)
     const [form] = Form.useForm();
     const [isShow, setIsShow] = useState(false);
     const navigate = useNavigate();
@@ -29,6 +30,7 @@ const WorkPlace = ({roomId})=>{
         message.error("请检查文件信息是否正确！");
         console.error("表单验证失败:", errorInfo);
     };
+
     const show = () => setIsShow(true)
     const close = () => setIsShow(false)
 
@@ -37,7 +39,8 @@ const WorkPlace = ({roomId})=>{
     },[dispatch])
     // const {docList} = useSelector(state => state.docList)
     function build(docName) {
-        const docId = String(docName)
+        const docId = String(uname+docName)
+        console.log(docId)
         setSelectedDoc(docId)
         form.resetFields();
         close()

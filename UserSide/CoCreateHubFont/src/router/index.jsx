@@ -27,6 +27,7 @@ const router = createBrowserRouter([
     {
         path:'/workPlace/',
         element: <AuthRoute><Main/></AuthRoute>,
+        // element: <Main/>,
         children:[
             //重定向
             {
@@ -52,11 +53,12 @@ const router = createBrowserRouter([
     {
         path:'/work/:roomId',
         element: <AuthRoute><App/></AuthRoute>
+        // element: <App/>
     },
     {
         path:'/User',
-        element: <AuthRoute><User/></AuthRoute>
-        // element: <User/>
+        // element: <AuthRoute><User/></AuthRoute>
+        element: <User/>
     },
     {
         path:'/Helper',

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -16,4 +18,5 @@ public class LoginVo implements Serializable {
     private String mail;
     private String logo;
     private String token;
+    private long loginTime;
 }

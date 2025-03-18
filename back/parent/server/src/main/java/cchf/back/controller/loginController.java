@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +51,7 @@ public class loginController {
                 .mail(user.getMail())
                 .logo(user.getLogo())
                 .token(token)
+                .loginTime(new Date().getTime())
                 .build();
 
         return result.success(loginVo);

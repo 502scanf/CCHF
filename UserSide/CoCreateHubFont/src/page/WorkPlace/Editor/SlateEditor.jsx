@@ -56,7 +56,7 @@ export const SlateEditor = ({shareType, provider})=>{
             Transforms.insertNodes(editor, emptyNode, { at: [0] })
         }
         return e
-    },[shareType, provider.awareness, userInfo])
+    },[shareType, provider.awareness, user.uname])
 
     const renderElement = useCallback(props => <Element {...props}/>,[])
     const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
