@@ -13,6 +13,8 @@ public interface RoomMapper {
 
     RoomBuildVo getRoom(String roomname);
 
+    RoomBuildVo getRoomByRoomId(String roomid);
+
     List<RoomBuildVo> getRoomList(String onerid);
 
     void recycleRoom(String roomname);
