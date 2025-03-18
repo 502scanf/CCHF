@@ -19,9 +19,7 @@ const CommonHeader = ({collapsed}) =>{
         {
             key: '2',
             label: (
-                <a target="_blank" rel="noopener noreferrer">
-                    退出
-                </a>
+                <span className="logout" onClick={() => navigate('/User')}>退出</span>
             ),
         },
     ];

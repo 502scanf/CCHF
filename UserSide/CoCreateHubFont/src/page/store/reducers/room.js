@@ -18,7 +18,7 @@ const {setRoomList} = roomSlice.actions
 const fetchRoomList = (roomListData)=>{
     return async (dispatch)=>{
         const response = await roomListApi(roomListData)
-        dispatch(setRoomList(response.data.roomList))
+        dispatch(setRoomList(response.data))
     }
 }
 

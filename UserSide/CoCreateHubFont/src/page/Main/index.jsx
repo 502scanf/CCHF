@@ -69,13 +69,13 @@ const Main = () => {
             </PopForm>
             <Layout className="main-container">
                 <CommonAside collapsed={collapsed} setIsShow={show} />
-                <Layout>
+                <Layout style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
                     <CommonHeader collapsed={collapsed} />
                     <Content
                         style={{
                             margin: '24px 16px',
                             padding: 10,
-                            minHeight: 300,
+                            // minHeight: 300,
                             background: colorBgContainer,
                             borderRadius: borderRadiusLG,
 

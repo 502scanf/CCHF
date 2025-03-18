@@ -20,6 +20,11 @@
         select *
         from room where roomname = #{roomname};
     </select>
+    <select id="getRoomByRoomId"
+            resultType="cchf.back.vo.RoomBuildVo">
+        select *
+        from room where roomid = #{roomid};
+    </select>
 
     <select
             id="getRoomList"
