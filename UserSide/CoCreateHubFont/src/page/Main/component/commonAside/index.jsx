@@ -23,7 +23,7 @@ const CommonAside = ({collapsed , setIsShow}) => {
 
     return (
         <Sider trigger={null} collapsed={collapsed} width={250}>
-            <div className="logoHead" onClick={()=>navigate('/Top')}>
+            <div className="logoHead" onClick={()=>navigate('/')}>
                 <img src={logo} alt="React Logo" className="logo"/>
                 {!collapsed&&<span className="app-name">CoCreateHub</span>}
             </div>
@@ -34,23 +34,23 @@ const CommonAside = ({collapsed , setIsShow}) => {
             <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={['/workplacemanage']}
+                defaultSelectedKeys={['/workPlace/workPlaceManage']}
                 items={[
 
                     {
-                        key: '/workplacemanage',
+                        key: '/workPlace/workPlaceManage',
                         icon: <FieldTimeOutlined />,
                         label: '工作区管理',
 
                     },
                     {
-                        key: '/filespace',
+                        key: '/workPlace/fileSpace',
                         icon: <ShareAltOutlined />,
                         label: '文件区',
 
                     },
                     {
-                        key: '/recycle',
+                        key: '/workPlace/recycle',
                         icon: <DeleteOutlined />,
                         label: '回收站',
                     },

@@ -5,11 +5,11 @@ import cchf.back.constant.JwtClaimsConstant;
 import cchf.back.properties.JwtProperties;
 import cchf.back.util.jwtUtil;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -32,7 +32,12 @@ public class JwtLoginInterceptor implements HandlerInterceptor {
             return true;
         }
         log.info(String.valueOf(request));
-        String token = request.getHeader(jwtProperties.getUserToken());
+        String Header  = request.getHeader(jwtProperties.getUserToken());
+        if (Header == null || !Header.startsWith("Bearer ")){
+            response.sendError(HttpStatus.UNAUTHORIZED.value());
+            return false;
+        }
+        String token = Header.substring(7);
         try{
 
             log.info("校验:", token);

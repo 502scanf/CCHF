@@ -8,36 +8,42 @@ import Index from "@page/Top";
 import Login from "@page/login/Login.jsx";
 import FileSpace from "@page/FileSpace/FileSpace.jsx";
 import Recycle from "@page/Recycle/Recycle.jsx";
+import Sign from "@page/sign/sign.jsx";
+import AuthRoute from "@page/component/AuthRoute.jsx";
 
 const router = createBrowserRouter([
     {
-        path:'/top',
+        path:'/',
         element:<Index/>
+    },
+    {
+        path:'/sign',
+        element: <Sign/>
     },
     {
         path:'/login',
         element: <Login/>
     },
     {
-        path:'/',
-        Component: Main,
+        path:'/workPlace/',
+        element: <AuthRoute><Main/></AuthRoute>,
         children:[
             //重定向
             {
-                path: '/',
+                path: '/workPlace/',
                 element: <Navigate to="workPlaceManage" replace={true}/>
             },
             {
                 path:'workPlaceManage',
-                Component: WorkPlaceManage
+               element: <WorkPlaceManage/>
             },
             {
                 path:'fileSpace',
-                Component: FileSpace
+                element: <FileSpace/>
             },
             {
                 path:'recycle',
-                Component: Recycle
+                element: <Recycle/>
             },
 
 
@@ -45,15 +51,16 @@ const router = createBrowserRouter([
     },
     {
         path:'/work/:roomId',
-        element: <App/>
+        element: <AuthRoute><App/></AuthRoute>
     },
     {
         path:'/User',
-        element: <User/>
+        element: <AuthRoute><User/></AuthRoute>
+        // element: <User/>
     },
     {
         path:'/Helper',
-        element:<Helper/>
+        element:<AuthRoute><Helper/></AuthRoute>
     },
 
 ])

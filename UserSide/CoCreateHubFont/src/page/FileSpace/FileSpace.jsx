@@ -3,7 +3,9 @@ import './FileSpace.css'
 
 const FileSpace = () => {
     return(
-        <img src={nullImg} alt="Null Image" className="null-img" />
+        <div className="file-container">
+            <img src={nullImg} alt="Null Image" className="null-img"/>
+        </div>
     )
 }
 

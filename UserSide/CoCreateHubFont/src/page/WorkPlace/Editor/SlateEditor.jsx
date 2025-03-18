@@ -1,12 +1,13 @@
 //创建编译器
 import {useCallback, useEffect, useMemo} from "react";
-import {withHistory} from "slate-history";
 import {Editable, Slate, withReact} from "slate-react";
 import {withCursors, withYjs, YjsEditor} from "@slate-yjs/core";
 import {createEditor, Editor, Transforms} from "slate";
 import {Cursors} from "../../util/Cursors.jsx";
 import {TopBar} from "./component/index.jsx";
 import {BlockButton, MarkButton} from "./EditorButton.jsx";
+import {useSelector} from "react-redux";
+
 import '../WorkPlace.css'
 
 import {
@@ -25,21 +26,21 @@ import {
     FormatUnderlined
 } from "@mui/icons-material";
 
-
-
 const emptyNode = {
     children: [{ text: "" }],
 };
 export const SlateEditor = ({shareType, provider})=>{
-    const userInfo = 'Chris'
+
+    const {user} = useSelector(state => state.user)
+
        // 对编辑器的创建，设置历史，光标
     const editor = useMemo(()=>{
         const e =
             // withHistory待研究
             withReact(withCursors(withYjs(createEditor(), shareType), provider.awareness, {
                     data:{
-                        name: userInfo,
-                        color:'#00ff00'
+                        name: user.uname,
+                        color: user.backColor
                     },
                 })
             )
