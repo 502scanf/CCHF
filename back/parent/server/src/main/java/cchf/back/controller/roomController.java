@@ -27,7 +27,7 @@ public class roomController {
     @PostMapping("/work")
     public result<RoomBuildVo> roomBuild(@RequestBody RoomBuildDto roomBuildDto){
         log.info("Room build");
-        RoomBuildVo roomBuildVo =  roomService.build(roomBuildDto);
+        RoomBuildVo roomBuildVo = roomService.build(roomBuildDto);
         log.info("build done");
         return result.success(roomBuildVo);
     }

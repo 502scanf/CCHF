@@ -1,6 +1,5 @@
 import {createSlice}  from "@reduxjs/toolkit";
-import axios from "axios";
-import {roomListApi} from "@page/api/room.js";
+import {roomBuildApi, roomListApi} from "@page/api/room.js";
 
 const roomSlice = createSlice({
     name:'room',
@@ -8,13 +7,18 @@ const roomSlice = createSlice({
         roomList: []
     },
     reducers:{
+        //同步修改
         setRoomList(state, action){
             state.roomList = action.payload
+        },
+        //同步添加房间
+        addRoom(state, action){
+            state.roomList.push(action.payload)
         }
     }
 })
 
-const {setRoomList} = roomSlice.actions
+const {setRoomList,addRoom} = roomSlice.actions
 const fetchRoomList = (roomListData)=>{
     return async (dispatch)=>{
         const response = await roomListApi(roomListData)
@@ -22,6 +26,13 @@ const fetchRoomList = (roomListData)=>{
     }
 }
 
-export {fetchRoomList}
+const addRoomList = (roomBuildData)=>{
+    return async (dispatch)=>{
+        const response = await roomBuildApi (roomBuildData)
+        dispatch(addRoom(response.data))
+    }
+}
+
+export {fetchRoomList,addRoomList}
 const roomReducer = roomSlice.reducer
 export default roomReducer
