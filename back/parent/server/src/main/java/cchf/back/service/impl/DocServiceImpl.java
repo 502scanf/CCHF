@@ -35,7 +35,7 @@ public class DocServiceImpl implements DocService {
         DefineDoc defineDoc = DefineDoc.builder()
                 .docid(uIdCreate.generateId())
                 .docname(docBuildDto.getDocname())
-                .doctype(docBuildDto.getDoctype())
+                .doctype("txt")
                 .docroomid(docBuildDto.getDocroomid())
                 .time(new Timestamp(System.currentTimeMillis()))
                 .status(0)
@@ -75,6 +75,6 @@ public class DocServiceImpl implements DocService {
         if (docList.isEmpty()){
             throw  new DocExistException(MessageConstant.DOC_NUMBER_NULL);
         }
-        return null;
+        return docList;
     }
 }

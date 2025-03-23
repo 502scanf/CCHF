@@ -19,7 +19,7 @@ const WorkPlaceManage = () => {
             {roomList ? (
                 <div className="roomList">
                     {roomList.map((item) => (
-                        <div key={item.roomid} className="room-item" onClick={() => navigate(`/work/${item.roomname}`)}>
+                        <div key={item.roomid} className="room-item" onClick={() => navigate(`/work/${item.roomid}`)}>
                             <img
                                 src={doc}
                                 alt="Document"

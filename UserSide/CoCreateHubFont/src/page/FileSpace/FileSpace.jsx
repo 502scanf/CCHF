@@ -9,6 +9,7 @@ const FileSpace = () => {
     const {docList} = useSelector(state => state.doc)
     const dispatch = useDispatch()
     useEffect(()=>{
+        console.log(docList)
         dispatch(fetchDocList())
     },[dispatch])
 
@@ -23,7 +24,7 @@ const FileSpace = () => {
                                 alt="Document"
                                 className="doc-img"
                             />
-                            <span>{item.docid}</span>
+                            <span>{item.docname}</span>
                         </div>
                     ))}
                 </div>
