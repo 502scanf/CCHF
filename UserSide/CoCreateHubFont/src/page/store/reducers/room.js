@@ -30,6 +30,7 @@ const addRoomList = (roomBuildData)=>{
     return async (dispatch)=>{
         const response = await roomBuildApi (roomBuildData)
         dispatch(addRoom(response.data))
+        return response.data
     }
 }
 

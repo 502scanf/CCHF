@@ -18,8 +18,9 @@ const Main = () => {
 
     const onFinish = async (value)=>{
         console.log(value)
-        await dispatch(addRoomList(value))
-        navigate(`/work/${inputValue}`)
+        const roomData = await dispatch(addRoomList(value))
+        console.log(roomData)
+        navigate(`/work/${roomData.roomid}`)
         message.success('成功创建工作区')
     }
     const onFinishFailed = (errorInfo) => {
