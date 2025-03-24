@@ -21,7 +21,6 @@ const WorkPlace = ({docroomid})=>{
     const [isShow, setIsShow] = useState(false);
     const navigate = useNavigate();
     const [isDocListVisible, setIsDocListVisible] = useState(false);
-    const [selectDoc, setSelectDoc] = useState(null);
     const dispatch = useDispatch();
     const [selectedDoc, setSelectedDoc] = useState(null)
     const {docList} = useSelector(state => state.doc)
@@ -117,7 +116,7 @@ const WorkPlace = ({docroomid})=>{
                     {docList && docList.map(item =>{
                         return(
                             <DocItem
-                                // onClick={()=>setSelectDoc(item.docId)}
+                                onClick={()=>setSelectedDoc(item.docname)}
                             >
                                 <img
                                     src={doc}

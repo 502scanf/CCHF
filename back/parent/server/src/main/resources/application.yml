@@ -6,9 +6,9 @@ spring:
     name: server
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3308/cchf?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/cchf?serverTimezone=UTC
     username: root
-    password: 123456
+    password: 2018
 #    url: jdbc:mysql://43.136.55.194:3306/cchf?serverTimezone=UTC
 #    username: 502scanf
 #    password: 2018
