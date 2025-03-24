@@ -2,23 +2,25 @@ import {Layout, theme, Form, Input, Button, message} from 'antd';
 import {Outlet, useNavigate} from "react-router-dom";
 import CommonAside from "./component/commonAside/index.jsx";
 import CommonHeader from "./component/commonHeader/index.jsx";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import  './Main.css'
 import React, {useState} from "react";
 import {PopForm} from "@page/component/Form.jsx";
+import {addRoomList} from "@page/store/reducers/room.js";
 
 const { Content } = Layout;
 
 const Main = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
-    const toWork = () => {
-        const inputValue = form.getFieldValue("roomname");
-        if (inputValue && inputValue.trim()) {
-            navigate(`/work/${inputValue}`);
-        } else {
-            alert("请输入内容！");
-        }
+    const inputValue = form.getFieldValue("roomname");
+    const dispatch = useDispatch();
+
+    const onFinish = async (value)=>{
+        console.log(value)
+        await dispatch(addRoomList(value))
+        navigate(`/work/${inputValue}`)
+        message.success('成功创建工作区')
     }
     const onFinishFailed = (errorInfo) => {
         message.error("请检查工作区信息是否正确！");
@@ -43,6 +45,7 @@ const Main = () => {
                     labelCol={{ flex: '500px' }}
                     labelAlign="left"
                     labelWrap
+                    onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                     wrapperCol={{ flex: 1 }}
                     colon={false}
@@ -61,7 +64,7 @@ const Main = () => {
                             type="primary"
                             htmlType="submit"
                             className="buildButton"
-                            onClick={()=>toWork(form.getFieldsValue("roomname"))}>
+                        >
                             创建
                         </Button>
                     </Form.Item>

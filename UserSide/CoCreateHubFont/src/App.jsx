@@ -7,7 +7,7 @@ export default function App(){
     const id = params.roomId
     return(
         <div>
-            <WorkPlace roomId={id}/>
+            <WorkPlace docroomid={id}/>
         </div>
 
     )

@@ -31,7 +31,8 @@ const emptyNode = {
 };
 export const SlateEditor = ({shareType, provider})=>{
 
-    const {user} = useSelector(state => state.user)
+    const {uname} = useSelector(state => state.user)
+    const {backColor} = useSelector(state => state.user)
 
        // 对编辑器的创建，设置历史，光标
     const editor = useMemo(()=>{
@@ -39,8 +40,8 @@ export const SlateEditor = ({shareType, provider})=>{
             // withHistory待研究
             withReact(withCursors(withYjs(createEditor(), shareType), provider.awareness, {
                     data:{
-                        name: user.uname,
-                        color: user.backColor
+                        name: uname,
+                        color: backColor
                     },
                 })
             )
@@ -56,7 +57,7 @@ export const SlateEditor = ({shareType, provider})=>{
             Transforms.insertNodes(editor, emptyNode, { at: [0] })
         }
         return e
-    },[shareType, provider.awareness, user.uname])
+    },[shareType, provider.awareness])
 
     const renderElement = useCallback(props => <Element {...props}/>,[])
     const renderLeaf = useCallback((props) => <Leaf {...props} />, []);

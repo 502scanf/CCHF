@@ -3,19 +3,18 @@
 
 <mapper namespace="cchf.back.mapper.RoomMapper">
 
-    <insert
-            id="insert">
+    <insert id="insert">
         insert into room( roomname, roomid, onerid, status, time)
             values (#{roomname}, #{roomid}, #{onerid}, #{status}, #{time})
     </insert>
-    <update
-            id="recycleRoom">
+
+    <update id="recycleRoom">
         update room
             set status = -1
             where roomname =#{roomname}
     </update>
-    <select
-            id="getRoom"
+
+    <select id="getRoom"
             resultType="cchf.back.vo.RoomBuildVo">
         select *
         from room where roomname = #{roomname};

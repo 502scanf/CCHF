@@ -1,27 +1,37 @@
 import {createSlice}  from "@reduxjs/toolkit";
-import axios from "axios";
+import {docBuildApi, docListApi} from "@page/api/doc.js";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const docSlice = createSlice({
     name:'doc',
     initialState:{
         docList:[],
-
     },
     reducers:{
+        //同步修改
         setDocList(state, action){
             state.docList = action.payload
+        },
+        //同步添加房间
+        addDoc(state, action){
+            state.docList.push(action.payload)
         }
     }
 })
-const {setDocList} = docSlice.actions
-const fetchDoclist = ()=>{
+const {setDocList,addDoc} = docSlice.actions
+const fetchDocList = (docListData)=>{
     return async (dispatch)=>{
-        const response = await axios.get(`${BASE_URL}/docList`)
-        dispatch(setDocList(response.data.docList))
+        const response = await docListApi(docListData)
+        dispatch(setDocList(response.data))
     }
 }
 
-export {fetchDoclist}
+const addDocList = (docBuildData)=>{
+    return async (dispatch)=>{
+        const response = await docBuildApi (docBuildData)
+        dispatch(addDoc(response.data))
+    }
+}
+
+export {fetchDocList,addDocList}
 const docReducer = docSlice.reducer
 export default docReducer
