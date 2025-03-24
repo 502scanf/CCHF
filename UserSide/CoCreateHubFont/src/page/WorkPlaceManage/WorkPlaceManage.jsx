@@ -5,6 +5,8 @@ import {fetchRoomList} from "@page/store/reducers/room.js";
 import "./WorkPlaceManage.css"
 import doc from "@assets/doc.svg";
 import {useNavigate} from "react-router-dom";
+import {Button, Input} from 'antd';
+import {SearchOutlined} from "@ant-design/icons";
 
 const WorkPlaceManage = () => {
     const navigate = useNavigate();
@@ -16,6 +18,11 @@ const WorkPlaceManage = () => {
 
     return (
         <div className="room-container">
+            <div className="room-header">
+                <label style={{marginRight:'5px'}}>工作区名称：</label>
+                <Input placeholder="输入工作区名称" style={{ width: '300px' }}/>
+                <Button icon={<SearchOutlined />} style={{ marginLeft: '5px',background:'#bfbfbf',color: ''}}>查询</Button>
+            </div>
             {roomList ? (
                 <div className="roomList">
                     {roomList.map((item) => (

@@ -107,6 +107,8 @@ const WorkPlace = ({docroomid})=>{
                     className="docList"
                     style={{
                         transform: isDocListVisible ? 'translateX(0)' : 'translateX(-100%)',
+                        overflowY: 'auto',
+                        maxHeight: '660px'
                     }}
                     onMouseEnter={() => setIsDocListVisible(true)}
                     onMouseLeave={() => setIsDocListVisible(false)}
