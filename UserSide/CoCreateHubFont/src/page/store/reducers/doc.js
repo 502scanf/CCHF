@@ -20,15 +20,15 @@ const docSlice = createSlice({
 const {setDocList,addDoc} = docSlice.actions
 const fetchDocList = (docListData)=>{
     return async (dispatch)=>{
-        const response = await docListApi(docListData)
-        dispatch(setDocList(response.data))
+        const res = await docListApi(docListData)
+        dispatch(setDocList(res.data))
     }
 }
 
 const addDocList = (docBuildData)=>{
     return async (dispatch)=>{
-        const response = await docBuildApi (docBuildData)
-        dispatch(addDoc(response.data))
+        const res = await docBuildApi (docBuildData)
+        dispatch(addDoc(res.data))
     }
 }
 

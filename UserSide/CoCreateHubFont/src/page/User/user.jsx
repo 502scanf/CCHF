@@ -3,17 +3,21 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import GroupIcon from '@mui/icons-material/Group';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {editUser} from "@page/store/reducers/user.js";
 
 const User = ()=>{
 
-    const [email, setEmail] = useState("1234567890@qq.com");
-    const [name, setName] = useState("User123");
-    const [password,setPassword] = useState("1234566789");
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [password,setPassword] = useState("123456");
     const [notifications, setNotifications] = useState(false);
     const [disturb, setDisturb] = useState(true);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
+    const {uname,mail,logo} = useSelector(state => state.user);
+    const dispatch = useDispatch()
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -22,8 +26,16 @@ const User = ()=>{
         setOpen(false);
     };
 
-    const handleSave = () => {
-        console.log('保存个人信息：', { name, email });
+    const handleSave = async () => {
+        // 收集所有相关数据
+        const userData = {
+            uname: name,
+            mail: email,
+            password: password,
+            logo: avatar
+        }
+        console.log('保存个人信息：', userData)
+        await dispatch(editUser(userData))
         handleClose();
     };
 
@@ -53,8 +65,8 @@ const User = ()=>{
                         <div className="UserInfo">
                             <image className="userLogo"><GroupIcon/></image>
                             <div className="userDetails">
-                                <span className="spanHead">用户名: {name}</span>
-                                <span className="spanHead">邮箱: {email}</span>
+                                <span className="spanHead">用户名: {uname}</span>
+                                <span className="spanHead">邮箱: {mail}</span>
                             </div>
                             <button variant="contained" color="primary" onClick={handleClickOpen}>编辑信息</button>
                             <Dialog classes="InfoEdit" open={open} onClose={handleClose}>

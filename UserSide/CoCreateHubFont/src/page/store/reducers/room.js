@@ -27,28 +27,28 @@ const roomSlice = createSlice({
 const {setRoomList,addRoom} = roomSlice.actions
 const fetchRoomList = (roomListData)=>{
     return async (dispatch)=>{
-        const response = await roomListApi(roomListData)
-        dispatch(setRoomList(response.data))
-        return response.data
+        const res = await roomListApi(roomListData)
+        dispatch(setRoomList(res.data))
+        return res.data
     }
 }
 
 const addRoomList = (roomBuildData)=>{
     return async (dispatch)=>{
-        const response = await roomBuildApi (roomBuildData)
-        dispatch(addRoom(response.data))
-        return response.data
+        const res = await roomBuildApi (roomBuildData)
+        dispatch(addRoom(res.data))
+        return res.data
     }
 }
 
 const getRoom = (roomFindData) => {
     return async (dispatch) => {
         try {
-            const response = await roomFindApi(roomFindData);
-            if (response.data === null) {
+            const res = await roomFindApi(roomFindData);
+            if (res.data === null) {
                 throw new Error('房间不存在');
             }
-            dispatch(setRoomList([response.data])); // 将单个对象转换为数组
+            dispatch(setRoomList([res.data])); // 将单个对象转换为数组
         } catch (error) {
             // 捕获错误并抛出
             throw error;

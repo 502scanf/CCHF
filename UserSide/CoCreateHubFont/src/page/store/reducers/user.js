@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {getToken, setToken, loginTime} from "@page/util/token.js";
-import {loginApi, signApi} from "@page/api/user.js";
+import {editUserApi, loginApi, signApi} from "@page/api/user.js";
 
 let R = Math.random().toString(16).split(".")[1]
 let color = "#"+R.slice(0,6)
@@ -54,11 +54,21 @@ const fetchUser = (loginData) =>{
     }
 }
 
+const editUser = (editData) =>{
+    return async (dispatch)=>{
+        const res = await editUserApi(editData)
+        dispatch(sN(res.data.uname))
+        dispatch(sM(res.data.mail))
+        dispatch(sL(res.data.logo))
+        dispatch(sC(color))
+    }
+}
+
 const signUser = (signData)=>{
     return async (dispatch) =>{
         const res = await signApi(signData)
     }
 }
 
-export {signUser, fetchUser, sT, sN, sM, sL, sC}
+export {signUser, fetchUser,editUser, sT, sN, sM, sL, sC}
 export default userReducer
