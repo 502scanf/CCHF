@@ -12,7 +12,7 @@ export function roomBuildApi (roomBuildData){
 
 export function roomFindApi (roomFindData){
     return cchRequest({
-            url: '/roomPlace/${roomFindData}',
+            url: `/roomPlace/${roomFindData}`,
             method:'get',
             data:roomFindData
         }
