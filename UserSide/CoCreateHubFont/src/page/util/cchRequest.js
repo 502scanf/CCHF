@@ -11,11 +11,17 @@ const cchRequest = axios.create({
 cchRequest.interceptors.request.use((config)=>{
 
     const token = getToken();
-
+    const roomToken = localStorage.getItem('roomToken');
     if(token){
         config.headers = {
             ...config.headers,
             'cch': `Bearer ${token}`
+        }
+    }
+    if(roomToken){
+        config.headers = {
+            ...config.headers,
+            'room': `Bearer ${roomToken}`
         }
     }
     console.log(BASE_URL)

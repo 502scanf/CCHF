@@ -11,4 +11,5 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class RoomBuildDto implements Serializable {
     private String roomname;
+    private String roompassword;
 }

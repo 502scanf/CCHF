@@ -1,22 +1,21 @@
-package cchf.back.vo;
+package cchf.back.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RoomBuildVo implements Serializable {
+public class Room {
     private String roomid;
     private String roomname;
     private String onerid;
     private int status;
     private Timestamp time;
-    private String token;
+    private String roompassword;
 }

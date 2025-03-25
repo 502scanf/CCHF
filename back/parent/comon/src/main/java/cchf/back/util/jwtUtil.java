@@ -29,5 +29,25 @@ public class jwtUtil {
         return claims;
     }
 
+    public static String roomCreateJwt(String roomName, String roomSecretKey, long roomTtl){
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
+        long expMillis = System.currentTimeMillis()+roomTtl;
+        Date exp = new Date(expMillis);
+
+        JwtBuilder builder = Jwts.builder()
+                .setSubject(roomName)
+                .setExpiration(exp)
+                .signWith(signatureAlgorithm, roomSecretKey.getBytes(StandardCharsets.UTF_8));
+        return builder.compact();
+    }
+
+    public static Claims roomParseJwt(String token, String roomSecretKey){
+        Claims room = Jwts.parser()
+                .setSigningKey(roomSecretKey.getBytes(StandardCharsets.UTF_8))
+                .parseClaimsJws(token)
+                .getBody();
+        return room;
+    }
 }
 

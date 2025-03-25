@@ -25,6 +25,7 @@ import {
     FormatItalic,
     FormatUnderlined
 } from "@mui/icons-material";
+import {ActiveRoomPartner} from "@page/WorkPlace/Editor/ActiveRoomPartner.jsx";
 
 const emptyNode = {
     children: [{ text: "" }],
@@ -70,6 +71,7 @@ export const SlateEditor = ({shareType, provider})=>{
     return(
         <Slate editor={editor} initialValue={[emptyNode]} >
             <div className="holeEditor">
+
                 <TopBar>
                     <MarkButton format="bold"><FormatBold/></MarkButton>
                     <MarkButton format="italic"><FormatItalic/></MarkButton>
@@ -91,7 +93,6 @@ export const SlateEditor = ({shareType, provider})=>{
                         placeholder="Enter some content ... "
                         renderElement={renderElement}
                         renderLeaf={renderLeaf}
-
                     />
                 </Cursors>
             </div>

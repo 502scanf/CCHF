@@ -7,6 +7,8 @@ import  './Main.css'
 import React, {useState} from "react";
 import {PopForm} from "@page/component/Form.jsx";
 import {addRoomList} from "@page/store/reducers/room.js";
+import axios from "axios";
+import {passRoomApi} from "@page/api/room.js";
 
 const { Content } = Layout;
 
@@ -17,11 +19,20 @@ const Main = () => {
     const dispatch = useDispatch();
 
     const onFinish = async (value)=>{
+
         console.log(value)
         const roomData = await dispatch(addRoomList(value))
         console.log(roomData)
-        navigate(`/work/${roomData.roomid}`)
-        message.success('成功创建工作区')
+
+        try{
+           await passRoomApi(value)
+            navigate(`/work/${roomData.roomid}`)
+            message.success('创建成功')
+        }catch{
+            message.error('创建失败')
+        }
+
+
     }
     const onFinishFailed = (errorInfo) => {
         message.error("请检查工作区信息是否正确！");
@@ -56,8 +67,8 @@ const Main = () => {
                         <Input placeholder="请输入工作区名称"/>
                     </Form.Item>
 
-                    <Form.Item label="备注" name="tip" rules={[{ required: true, message: "备注不能为空"}]}>
-                        <Input placeholder="请填写工作区备注"/>
+                    <Form.Item label="密码" name="roompassword" rules={[{ required: true, message: "密码不能为空"}]}>
+                        <Input.Password placeholder="请输入房间的密码"/>
                     </Form.Item>
 
                     <Form.Item label=" ">

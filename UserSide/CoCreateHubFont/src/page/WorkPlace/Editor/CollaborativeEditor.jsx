@@ -1,10 +1,11 @@
 //设置编辑器连接yjs和liveblock
 import {ClientSideSuspense, LiveblocksProvider, RoomProvider, useRoom} from "@liveblocks/react";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import * as Y from 'yjs'
 import {LiveblocksYjsProvider} from "@liveblocks/yjs";
 import {SlateEditor} from "./SlateEditor.jsx";
 import loading from '@assets/loading.svg'
+import {ActiveRoomPartner} from "@page/WorkPlace/Editor/ActiveRoomPartner.jsx";
  const CollaborativeEditor = ({docId})=> {
      const room = useRoom()
      const [connected, setConnected] = useState(false)
@@ -42,7 +43,7 @@ export const HoleEditor = ({docId})=>{
         <LiveblocksProvider publicApiKey="pk_prod_xGHxC0g4wwRVebwmmYrsHYNbllxddxg18y6OPAn41HUkJoibz95b5LqVFoAgJX1t">
             <RoomProvider id={docId}>
                 <ClientSideSuspense fallback={<img src={loading} alt={loading} className="loading"/>}>
-                    {() => <CollaborativeEditor docId={docId}/>}
+                    <CollaborativeEditor docId={docId}/>
                 </ClientSideSuspense>
             </RoomProvider>
         </LiveblocksProvider>

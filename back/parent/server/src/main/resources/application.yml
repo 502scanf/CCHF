@@ -23,3 +23,6 @@ cchf:
     user-secret-key: cocreatehub
     user-ttl: 7200000
     user-token: cch
+    room-secret-key: cocreatehubroom
+    room-ttl: 3600000
+    room-token: cchr

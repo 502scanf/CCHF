@@ -4,8 +4,8 @@
 <mapper namespace="cchf.back.mapper.RoomMapper">
 
     <insert id="insert">
-        insert into room( roomname, roomid, onerid, status, time)
-            values (#{roomname}, #{roomid}, #{onerid}, #{status}, #{time})
+        insert into room( roomname, roomid, onerid, status, time,roompassword)
+            values (#{roomname}, #{roomid}, #{onerid}, #{status}, #{time}, #{roompassword})
     </insert>
 
     <update id="recycleRoom">
@@ -31,6 +31,12 @@
         select roomname, roomid, onerid, status, time
         from room
            where status != -1
-             and onerid =#{onerid}
+
+    </select>
+    <select id="getRoomPassword" resultType="java.lang.String">
+        select roompassword
+            from room
+            where status != -1
+            and roomname = #{roomname}
     </select>
 </mapper>

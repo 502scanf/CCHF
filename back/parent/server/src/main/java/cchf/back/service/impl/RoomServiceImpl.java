@@ -3,6 +3,8 @@ package cchf.back.service.impl;
 import cchf.back.constant.BaseContext;
 import cchf.back.constant.MessageConstant;
 import cchf.back.dto.RoomBuildDto;
+import cchf.back.entity.Room;
+import cchf.back.exception.PasswordErrorException;
 import cchf.back.exception.RoomExistException;
 import cchf.back.mapper.RoomMapper;
 import cchf.back.service.RoomService;
@@ -24,7 +26,7 @@ public class RoomServiceImpl implements RoomService {
     private RoomMapper roomMapper;
 
    @Override
-   public RoomBuildVo build(RoomBuildDto roomBuildDto){
+   public Room build(RoomBuildDto roomBuildDto){
        //房间唯一性
        log.info("only test");
        RoomBuildVo existRoom = roomMapper.getRoom(roomBuildDto.getRoomname());
@@ -34,17 +36,19 @@ public class RoomServiceImpl implements RoomService {
        //房间建立
        log.info("build...");
        String roomid = uIdCreate.generateId();
-       RoomBuildVo roomBuildVo = RoomBuildVo.builder()
+       Room room = Room.builder()
                .roomname(roomBuildDto.getRoomname())
                .roomid(roomid)
                .status(0)
                .onerid(BaseContext.getCurrentId())
                .time(new Timestamp(System.currentTimeMillis()))
+               .roompassword(roomBuildDto.getRoompassword())
                .build();
+
+       roomMapper.insert(room);
        log.info("done");
 
-       roomMapper.insert(roomBuildVo);
-       return roomBuildVo;
+       return room;
    }
 
     @Override
@@ -76,5 +80,13 @@ public class RoomServiceImpl implements RoomService {
         roomRecycleVo.setRoomname(roomname);
         return roomRecycleVo;
     }
+
+    @Override
+    public void passRoom(RoomBuildDto roomBuildDto) {
+      String password =  roomMapper.getRoomPassword(roomBuildDto.getRoomname());
+
+      if (!roomBuildDto.getRoompassword().equals(password))
+          throw new PasswordErrorException(MessageConstant.PASSWORD_ERROR);
+   }
 
 }

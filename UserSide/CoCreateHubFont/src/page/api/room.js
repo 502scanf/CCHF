@@ -37,4 +37,12 @@ export function roomRecycleApi (roomRecycleData){
     )
 }
 
+export function passRoomApi (passRoomData){
+    return cchRequest({
+            url: '/roomPlace/passRoom',
+            method:'post',
+            data:passRoomData
+        }
+    )
+}
 

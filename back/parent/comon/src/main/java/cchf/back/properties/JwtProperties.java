@@ -13,5 +13,9 @@ public class JwtProperties {
     private long userTtl;
     private String userToken;
 
+    private String roomSecretKey;
+    private long roomTtl;
+    private String roomToken;
+
 
 }

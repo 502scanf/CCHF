@@ -14,6 +14,7 @@ import {addDocList, fetchDocList} from "@page/store/reducers/doc.js";
 import {DocItem} from "./Editor/component/index.jsx"
 import {Button, Form, Input, message} from "antd";
 import {PopForm} from "@page/component/Form.jsx";
+import {ActiveRoomPartner} from "@page/WorkPlace/Editor/ActiveRoomPartner.jsx";
 
 //工作区主程序，房间id，key设置。。。
 const WorkPlace = ({docroomid})=>{
@@ -49,12 +50,6 @@ const WorkPlace = ({docroomid})=>{
         dispatch(fetchDocList(docroomid))
     },[dispatch,docroomid])
 
-    function build(docName) {
-        const docId = String(docName)
-        setSelectedDoc(docId)
-        form.resetFields();
-        close()
-    }
 
     return (
         <div className="workPlace">
@@ -149,6 +144,7 @@ const WorkPlace = ({docroomid})=>{
                     />
                 </div>
             </div>
+
             {/*doc编辑页面*/}
             {
                 selectedDoc?
