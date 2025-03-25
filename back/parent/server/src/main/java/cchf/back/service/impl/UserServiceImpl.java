@@ -64,7 +64,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public result updateUserInfo(UserDto userDto,String uid){
-        int res = userMapper.updateUserInfo(userDto, uid);
+        userDto.setUid(uid);
+        int res = userMapper.updateUserInfo(userDto);
         if(res <= 0) return result.error(MessageConstant.User_INFO_ERROR);
         return result.success(userDto);
     }

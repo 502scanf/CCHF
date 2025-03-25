@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/cch/user")
 public class UserInfoController {
     @Autowired
     private UserService userService;

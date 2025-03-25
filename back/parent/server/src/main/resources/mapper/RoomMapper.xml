@@ -31,6 +31,5 @@
         select roomname, roomid, onerid, status, time
         from room
            where status != -1
-             and onerid =#{onerid}
     </select>
 </mapper>

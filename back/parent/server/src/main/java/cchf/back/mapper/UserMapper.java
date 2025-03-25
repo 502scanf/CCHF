@@ -9,6 +9,6 @@ public interface UserMapper {
     User getByMail(String login);
     User getByName(String login);
     void insert(User user);
-    int updateUserInfo(UserDto userDto, String uid);
+    int updateUserInfo(UserDto userDto);
     int deleteUserInfo(String uid);
 }

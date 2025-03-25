@@ -22,3 +22,11 @@ export function editUserApi(editData){
         data:editData
     })
 }
+
+export function deleteUserApi(deleteUserData){
+    return cchRequest({
+        url: '/user',
+        method:'delete',
+        data:deleteUserData
+    })
+}

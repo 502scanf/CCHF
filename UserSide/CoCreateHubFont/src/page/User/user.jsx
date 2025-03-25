@@ -5,7 +5,8 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 import GroupIcon from '@mui/icons-material/Group';
 import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {editUser} from "@page/store/reducers/user.js";
+import {deleteUser, editUser, logoutUser,} from "@page/store/reducers/user.js";
+import {message} from "antd";
 
 const User = ()=>{
 
@@ -51,6 +52,17 @@ const User = ()=>{
             reader.readAsDataURL(file);
         }
     };
+
+    const handleLogout = () => {
+        dispatch(logoutUser())
+        navigate('/')
+    }
+
+    const handleDetele = () => {
+        dispatch(deleteUser())
+        navigate('/')
+        message.success("账号已注销")
+    }
 
     return (
         <div className="userSetting">
@@ -177,8 +189,8 @@ const User = ()=>{
                         </div>
                 </div>
                 <div className="Option">
-                    <button className="hover1">注销账号</button>
-                    <button className="hover2">退出登录</button>
+                    <button className="hover1" onClick={handleDetele}>注销账号</button>
+                    <button className="hover2" onClick={handleLogout}>退出登录</button>
                 </div>
             </div>
         </div>

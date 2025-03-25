@@ -19,6 +19,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 public class UserDto implements Serializable {
+    private String uid;
     private String uname;
     private String mail;
     private String password;

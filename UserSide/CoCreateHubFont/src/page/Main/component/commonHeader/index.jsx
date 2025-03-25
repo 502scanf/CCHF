@@ -4,11 +4,16 @@ import './index.css'
 import { useDispatch } from 'react-redux';
 import { collapseMenu } from '../../../store/reducers/tab.js'
 import {useNavigate} from "react-router-dom";
+import {logoutUser} from "@page/store/reducers/user.js";
 
 const { Header } = Layout;
 
 const CommonHeader = ({collapsed}) =>{
     const navigate = useNavigate();
+    const handleLogout = () => {
+        dispatch(logoutUser())
+        navigate('/')
+    }
     const items = [
         {
             key: '1',
@@ -19,7 +24,7 @@ const CommonHeader = ({collapsed}) =>{
         {
             key: '2',
             label: (
-                <span className="logout" onClick={() => navigate('/User')}>退出</span>
+                <span className="logout" onClick={handleLogout}>退出</span>
             ),
         },
     ];
