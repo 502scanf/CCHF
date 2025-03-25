@@ -214,7 +214,7 @@ input:checked + .slider:before {
 .hover1{
 
     float: left;
-    color: #fff;
+    color: #000000;
 }
 .hover1:hover{
     background-color: #f85757;
@@ -222,8 +222,7 @@ input:checked + .slider:before {
 }
 .hover2{
     float: right;
-
-    color: #fff;
+    color: #000000;
 }
 .hover2:hover{
     background-color:  #54f387;

@@ -92,6 +92,7 @@ button.ant-btn:hover {
   padding: 10px 20px;
   font-weight: 300;
   margin: 10px;
+  color: white;
 }
 .custom-btn:hover {
   background-color: #4cc9f0;

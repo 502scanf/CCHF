@@ -20,4 +20,22 @@
         select *
         from user where uname = #{login}
     </select>
+    <update id="updateUserInfo">
+        update user
+        <set>
+            <if test="uname != null">
+                uname = #{uname},
+            </if>
+            <if test="mail != null">
+                mail = #{mail},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+        </set>
+        where uid = #{uid}
+    </update>
+    <delete id="deleteUserInfo">
+        delete from user where uid = #{uid}
+    </delete>
 </mapper>

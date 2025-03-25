@@ -28,7 +28,6 @@ public class JwtLoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //拦截controller
         if (!(handler instanceof HandlerMethod)) {
-
             return true;
         }
         log.info(String.valueOf(request));
@@ -40,10 +39,10 @@ public class JwtLoginInterceptor implements HandlerInterceptor {
         String token = Header.substring(7);
         try{
 
-            log.info("校验:", token);
+            log.info("校验:{}", token);
             Claims claims = jwtUtil.parseJwt(token, jwtProperties.getUserSecretKey());
             String uid = claims.get(JwtClaimsConstant.user_id).toString();
-            log.info("uid", uid);
+            log.info("uid:{}", uid);
             BaseContext.setCurrentId(uid);
             //测试token过期自动刷新
             Date expiration = claims.getExpiration();

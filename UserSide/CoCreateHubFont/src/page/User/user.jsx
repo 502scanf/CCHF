@@ -3,17 +3,22 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import GroupIcon from '@mui/icons-material/Group';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteUser, editUser, logoutUser,} from "@page/store/reducers/user.js";
+import {message} from "antd";
 
 const User = ()=>{
 
-    const [email, setEmail] = useState("1234567890@qq.com");
-    const [name, setname] = useState("User123");
-    const [password,setpassword] = useState("1234566789");
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [password,setPassword] = useState("123456");
     const [notifications, setNotifications] = useState(false);
     const [disturb, setDisturb] = useState(true);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
+    const {uname,mail,logo} = useSelector(state => state.user);
+    const dispatch = useDispatch()
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -22,8 +27,16 @@ const User = ()=>{
         setOpen(false);
     };
 
-    const handleSave = () => {
-        console.log('保存个人信息：', { name, email });
+    const handleSave = async () => {
+        // 收集所有相关数据
+        const userData = {
+            uname: name,
+            mail: email,
+            password: password,
+            logo: avatar
+        }
+        console.log('保存个人信息：', userData)
+        await dispatch(editUser(userData))
         handleClose();
     };
 
@@ -40,6 +53,17 @@ const User = ()=>{
         }
     };
 
+    const handleLogout = () => {
+        dispatch(logoutUser())
+        navigate('/')
+    }
+
+    const handleDetele = () => {
+        dispatch(deleteUser())
+        navigate('/')
+        message.success("账号已注销")
+    }
+
     return (
         <div className="userSetting">
             <div className="userTop">
@@ -53,8 +77,8 @@ const User = ()=>{
                         <div className="UserInfo">
                             <image className="userLogo"><GroupIcon/></image>
                             <div className="userDetails">
-                                <span className="spanHead">用户名: {name}</span>
-                                <span className="spanHead">邮箱: {email}</span>
+                                <span className="spanHead">用户名: {uname}</span>
+                                <span className="spanHead">邮箱: {mail}</span>
                             </div>
                             <button variant="contained" color="primary" onClick={handleClickOpen}>编辑信息</button>
                             <Dialog classes="InfoEdit" open={open} onClose={handleClose}>
@@ -165,8 +189,8 @@ const User = ()=>{
                         </div>
                 </div>
                 <div className="Option">
-                    <button className="hover1">注销账号</button>
-                    <button className="hover2">退出登录</button>
+                    <button className="hover1" onClick={handleDetele}>注销账号</button>
+                    <button className="hover2" onClick={handleLogout}>退出登录</button>
                 </div>
             </div>
         </div>
