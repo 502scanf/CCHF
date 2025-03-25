@@ -12,4 +12,6 @@ public class MessageConstant {
     public static final String DOC_EXISTS = "文件已存在";
     public static final String DOC_NO_EXISTS = "文件不存在";
     public static final String DOC_NUMBER_NULL = "没创建文件";
+    public static final String User_INFO_ERROR = "信息更新失败";
+    public static final String User_DELETE_ERROR = "注销失败";
 }
