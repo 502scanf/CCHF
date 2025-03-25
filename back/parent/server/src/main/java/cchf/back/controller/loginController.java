@@ -56,4 +56,9 @@ public class loginController {
 
         return result.success(loginVo);
     }
+
+    @PostMapping("/logout")
+    public result logout(){
+        return result.success();
+    }
 }
