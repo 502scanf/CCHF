@@ -56,7 +56,7 @@ public class JwtLoginInterceptor implements HandlerInterceptor {
                         jwtProperties.getUserSecretKey(),
                         jwtProperties.getUserTtl()
                 );
-                response.setHeader("Flash-Hoken", newToken);
+                response.setHeader("Flash-Token", newToken);
             }
             return true;
         }catch (Exception ex) {

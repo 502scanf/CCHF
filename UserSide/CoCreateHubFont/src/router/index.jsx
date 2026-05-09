@@ -1,5 +1,5 @@
 import User from '../page/User/User.jsx'
-import { Navigate, createHashRouter, createBrowserRouter} from "react-router-dom";
+import { Navigate, createHashRouter, createBrowserRouter } from "react-router-dom";
 import App from "../App.jsx";
 import Main from "../page/Main/index.jsx";
 import Helper from "../page/User/Helper.jsx";
@@ -10,59 +10,64 @@ import FileSpace from "@page/FileSpace/FileSpace.jsx";
 import Recycle from "@page/Recycle/Recycle.jsx";
 import Sign from "@page/sign/sign.jsx";
 import AuthRoute from "@page/component/AuthRoute.jsx";
+import Invite from "@page/Invite/Invite.jsx";
 
 const router = createBrowserRouter([
     {
-        path:'/',
-        element:<Index/>
+        path: '/',
+        element: <Index />
     },
     {
-        path:'/sign',
-        element: <Sign/>
+        path: '/sign',
+        element: <Sign />
     },
     {
-        path:'/login',
-        element: <Login/>
+        path: '/login',
+        element: <Login />
     },
     {
-        path:'/workPlace/',
-        element: <AuthRoute><Main/></AuthRoute>,
+        path: '/invite',
+        element: <Invite />
+    },
+    {
+        path: '/workPlace/',
+        element: <AuthRoute><Main /></AuthRoute>,
         // element: <Main/>,
-        children:[
+        children: [
             //重定向
             {
                 path: '/workPlace/',
-                element: <Navigate to="workPlaceManage" replace={true}/>
+                element: <Navigate to="workPlaceManage" replace={true} />
             },
             {
-                path:'workPlaceManage',
-               element: <WorkPlaceManage/>
+                path: 'workPlaceManage',
+                element: <WorkPlaceManage />
             },
             {
-                path:'fileSpace',
-                element: <FileSpace/>
+                path: 'fileSpace',
+                element: <FileSpace />
             },
             {
-                path:'recycle',
-                element: <Recycle/>
+                path: 'recycle',
+                element: <Recycle />
             },
 
 
         ]
     },
     {
-        path:'/work/:roomId',
-        element: <AuthRoute><App/></AuthRoute>
+        path: '/work/:roomId',
+        element: <AuthRoute><App /></AuthRoute>
         // element: <App/>
     },
     {
-        path:'/User',
+        path: '/User',
         // element: <AuthRoute><User/></AuthRoute>
-        element: <User/>
+        element: <User />
     },
     {
-        path:'/Helper',
-        element:<AuthRoute><Helper/></AuthRoute>
+        path: '/Helper',
+        element: <AuthRoute><Helper /></AuthRoute>
     },
 
 ])

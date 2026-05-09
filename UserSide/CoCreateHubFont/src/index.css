@@ -18,6 +18,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -46,9 +47,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -59,15 +62,31 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
 }
 
-.null-img{
+.null-img {
   height: 100%;
   width: 100%;
+}
+
+.cch-title {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  font-family: 'Montserrat', 'Inter', -apple-system, sans-serif;
+  background: linear-gradient(135deg, #ffffff 0%, #a8c0ff 40%, #8ba8ff 60%, #b29af8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 16px rgba(139, 168, 255, 0.45));
+  text-transform: uppercase;
 }

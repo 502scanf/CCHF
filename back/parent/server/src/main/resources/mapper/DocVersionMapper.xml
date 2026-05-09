@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cchf.back.mapper.DocVersionMapper">
+
+    <resultMap id="DocVersionResultMap" type="cchf.back.entity.DocVersion">
+        <id column="vid" property="vid"/>
+        <result column="docid" property="docid"/>
+        <result column="content" property="content"/>
+        <result column="editor" property="editor"/>
+        <result column="createtime" property="createtime"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="created_by" property="createdBy"/>
+        <!-- 暂时注释掉 TypeHandler，使用字符串类型 -->
+        <!-- <result column="snapshot_type" property="snapshotType" typeHandler="cchf.back.handler.SnapshotTypeHandler"/> -->
+        <result column="snapshot_type" property="snapshotType"/>
+        <result column="labels" property="labels" typeHandler="cchf.back.handler.JsonListTypeHandler"/>
+        <result column="is_locked" property="isLocked"/>
+        <result column="diff_stats" property="diffStats" typeHandler="cchf.back.handler.DiffStatsTypeHandler"/>
+        <result column="file_size" property="fileSize"/>
+        <result column="parent_vid" property="parentVid"/>
+    </resultMap>
+
+    <!-- 原有方法 -->
+    <insert id="insertVersion" parameterType="map">
+        insert into doc_version (docid, content, editor)
+        values (#{docid}, #{content, jdbcType=BLOB}, #{editor})
+    </insert>
+
+    <insert id="insertVersionWithType">
+        insert into doc_version (docid, content, editor, snapshot_type, file_size)
+        values (#{docid}, #{content, jdbcType=BLOB}, #{editor}, #{snapshotType}, #{fileSize})
+    </insert>
+
+    <!-- 新增：插入完整版本对象 -->
+    <insert id="insertVersionObject" parameterType="cchf.back.entity.DocVersion">
+        insert into doc_version (vid, docid, content, editor, createtime, created_at, created_by,
+                                  snapshot_type, labels, is_locked, diff_stats, file_size, parent_vid)
+        values (#{vid}, #{docid}, #{content, jdbcType=BLOB}, #{editor}, #{createtime}, #{createdAt}, #{createdBy},
+                #{snapshotType}, #{labels, typeHandler=cchf.back.handler.JsonListTypeHandler}, 
+                #{isLocked}, #{diffStats, typeHandler=cchf.back.handler.DiffStatsTypeHandler}, 
+                #{fileSize}, #{parentVid})
+    </insert>
+
+    <select id="getVersionsByDocId" resultMap="DocVersionResultMap">
+        select vid, docid, content, editor, createtime, created_at, created_by, snapshot_type, 
+               labels, is_locked, diff_stats, file_size, parent_vid
+        from doc_version
+        where docid = #{docid}
+        order by createtime desc
+    </select>
+
+    <!-- 新增：支持搜索的分页查询 -->
+    <select id="getVersionsByDocIdPaged" resultMap="DocVersionResultMap">
+        select vid, docid, content, editor, createtime, created_at, created_by, snapshot_type, 
+               labels, is_locked, diff_stats, file_size, parent_vid
+        from doc_version
+        where docid = #{docid}
+        <if test="search != null and search != ''">
+            and (editor like concat('%', #{search}, '%') 
+                 or JSON_SEARCH(labels, 'one', concat('%', #{search}, '%')) is not null)
+        </if>
+        order by createtime desc
+        limit #{limit} offset #{offset}
+    </select>
+
+    <select id="getVersionsByDocIdWithPaging" resultMap="DocVersionResultMap">
+        select vid, docid, content, editor, createtime, created_at, created_by, snapshot_type, 
+               labels, is_locked, diff_stats, file_size, parent_vid
+        from doc_version
+        where docid = #{docid}
+        <if test="search != null and search != ''">
+            and (editor like concat('%', #{search}, '%') 
+                 or JSON_SEARCH(labels, 'one', concat('%', #{search}, '%')) is not null)
+        </if>
+        order by createtime desc
+        limit #{limit} offset #{offset}
+    </select>
+
+    <!-- 支持 Integer 和 String 类型的 vid -->
+    <select id="getVersionById" resultMap="DocVersionResultMap">
+        select vid, docid, content, editor, createtime, created_at, created_by, snapshot_type, 
+               labels, is_locked, diff_stats, file_size, parent_vid
+        from doc_version
+        where vid = #{vid}
+    </select>
+
+    <!-- 新增：获取最新版本 -->
+    <select id="getLatestVersionByDocId" resultMap="DocVersionResultMap">
+        select vid, docid, content, editor, createtime, created_at, created_by, snapshot_type, 
+               labels, is_locked, diff_stats, file_size, parent_vid
+        from doc_version
+        where docid = #{docid}
+        order by createtime desc
+        limit 1
+    </select>
+
+    <!-- 新增：获取时间窗口内的最新版本 -->
+    <select id="getRecentVersionInWindow" resultMap="DocVersionResultMap">
+        select vid, docid, content, editor, createtime, created_at, created_by, snapshot_type, 
+               labels, is_locked, diff_stats, file_size, parent_vid
+        from doc_version
+        where docid = #{docid} 
+        and createtime >= #{windowStart}
+        and snapshot_type = 'auto_save'
+        order by createtime desc
+        limit 1
+    </select>
+
+    <select id="getVersionsInTimeWindow" resultMap="DocVersionResultMap">
+        select vid, docid, content, editor, createtime, created_at, created_by, snapshot_type, 
+               labels, is_locked, diff_stats, file_size, parent_vid
+        from doc_version
+        where docid = #{docid} 
+        and createtime >= #{cutoffTime}
+        and is_locked = false
+        and snapshot_type != 'auto_milestone'
+        order by createtime desc
+    </select>
+
+    <!-- 支持搜索的计数 -->
+    <select id="countVersionsByDocId" resultType="int">
+        select count(*) from doc_version 
+        where docid = #{docid}
+        <if test="search != null and search != ''">
+            and (editor like concat('%', #{search}, '%') 
+                 or JSON_SEARCH(labels, 'one', concat('%', #{search}, '%')) is not null)
+        </if>
+    </select>
+
+    <select id="getOldestDeletableVersions" resultType="int">
+        select vid from doc_version
+        where docid = #{docid}
+        and is_locked = false
+        and snapshot_type != 'auto_milestone'
+        order by createtime asc
+        limit #{limit}
+    </select>
+
+    <!-- 新增：获取最旧的版本ID列表（字符串类型） -->
+    <select id="getOldestVersionIds" resultType="string">
+        select vid from doc_version
+        where docid = #{docid}
+        and is_locked = false
+        and snapshot_type != 'auto_milestone'
+        order by createtime asc
+        limit #{limit}
+    </select>
+
+    <delete id="deleteVersions">
+        delete from doc_version where vid in
+        <foreach collection="vids" item="vid" open="(" separator="," close=")">
+            #{vid}
+        </foreach>
+    </delete>
+
+    <!-- 新增：删除单个版本 -->
+    <delete id="deleteVersion">
+        delete from doc_version where vid = #{vid}
+    </delete>
+
+    <delete id="deleteVersionsByDocId">
+        delete from doc_version where docid = #{docid}
+    </delete>
+
+    <delete id="deleteVersionsByRoomId">
+        delete from doc_version where docid in (
+            select docid from doc where docroomid = #{roomid}
+        )
+    </delete>
+
+    <update id="updateVersionLabel">
+        update doc_version set labels = #{labels} where vid = #{vid}
+    </update>
+
+    <!-- 新增：更新版本标签（List 类型） -->
+    <update id="updateVersionLabels">
+        update doc_version set labels = #{labels, typeHandler=cchf.back.handler.JsonListTypeHandler} 
+        where vid = #{vid}
+    </update>
+
+    <!-- 支持 Integer 和 String 类型的 vid -->
+    <update id="updateVersionLock">
+        update doc_version set is_locked = #{isLocked} where vid = #{vid}
+    </update>
+
+    <!-- 新增：更新版本内容 -->
+    <update id="updateVersionContent">
+        update doc_version 
+        set content = #{content, jdbcType=BLOB}, createtime = #{updatedAt}
+        where vid = #{vid}
+    </update>
+
+</mapper>

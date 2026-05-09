@@ -6,12 +6,31 @@ spring:
     name: server
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3308/cchf?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/cch?serverTimezone=UTC
     username: root
-    password: 123456
+    password: 2018
 #    url: jdbc:mysql://43.136.55.194:3306/cchf?serverTimezone=UTC
 #    username: 502scanf
 #    password: 2018
+  # Redis 配置
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+  # 邮件配置
+  mail:
+    host: smtp.qq.com                    # QQ邮箱SMTP服务器
+    port: 587                            # 端口
+    username: 857653486@qq.com          # 发件人邮箱（需要替换为你的QQ邮箱）
+    password: jexuqbhqtgkhbgaa    # 授权码（需要替换为QQ邮箱授权码，不是邮箱密码）
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 
 mybatis:
   mapper-locations:  classpath:mapper/*.xml

@@ -33,9 +33,10 @@ public class UserInfoController {
 
     @PostMapping("/edit")
     public result updateUserInfo(@RequestBody UserDto userDto) {
-        if(userDto == null) return result.error(MessageConstant.UNKNOWN_ERROR);
+        if (userDto == null)
+            return result.error(MessageConstant.UNKNOWN_ERROR);
         String uid = BaseContext.getCurrentId();
-        result result = userService.updateUserInfo(userDto,uid);
+        result result = userService.updateUserInfo(userDto, uid);
         return result;
     }
 
@@ -43,5 +44,10 @@ public class UserInfoController {
     public result deleteUserInfo() {
         String uid = BaseContext.getCurrentId();
         return userService.deleteUserInfo(uid);
+    }
+
+    @GetMapping("/name")
+    public result<String> getName() {
+        return result.success(userService.getName());
     }
 }

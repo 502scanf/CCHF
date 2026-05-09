@@ -10,5 +10,9 @@ public interface MateService {
 
     boolean addUserByRoomId(String roomid, MateDto mateDto);
 
-    boolean deleteUserByRoomIdAndUserId(String roomid,String uid);
+    boolean deleteUserByRoomIdAndUserId(String roomid, String uid);
+
+    String sendInviteTokens(String username, String roomid);
+
+    String confirmInvite(String token);
 }

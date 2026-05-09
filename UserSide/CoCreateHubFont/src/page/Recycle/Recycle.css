@@ -1,3 +1,55 @@
-.recycle-container{
-    height:100%;
+.recycle-container {
+    height: 100%;
+    padding: 8px;
+}
+
+.recycle-title {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.recycle-hint {
+    font-size: 12px;
+    color: #999;
+    margin: 0 0 16px 0;
+}
+
+.recycle-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.recycle-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fafafa;
+    height: 135px;
+    width: calc(25% - 8px);
+    opacity: 0.75;
+    transition: opacity 0.2s;
+}
+
+.recycle-item:hover {
+    opacity: 1;
+}
+
+.recycle-img {
+    height: 90%;
+    width: 100%;
+}
+
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 16px 0;
 }

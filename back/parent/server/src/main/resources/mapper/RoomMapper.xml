@@ -4,15 +4,51 @@
 <mapper namespace="cchf.back.mapper.RoomMapper">
 
     <insert id="insert">
-        insert into room( roomname, roomid, onerid, status, time,roompassword)
-            values (#{roomname}, #{roomid}, #{onerid}, #{status}, #{time}, #{roompassword})
+        insert into room( roomname, roomid, onerid, status, time)
+            values (#{roomname}, #{roomid}, #{onerid}, #{status}, #{time})
     </insert>
 
     <update id="recycleRoom">
         update room
-            set status = -1
-            where roomname =#{roomname}
+        set status = -1, recycletime = NOW()
+        where roomid = #{roomid}
     </update>
+
+    <update id="restoreRoom">
+        update room
+        set status = 0, recycletime = NULL
+        where roomid = #{roomid}
+    </update>
+
+    <select id="getRecycledRooms" resultType="cchf.back.vo.RoomBuildVo">
+        select roomname, roomid, onerid, status, time
+        from room
+        where status = -1 and onerid = #{onerid}
+    </select>
+
+    <select id="countRecycledRooms" resultType="java.lang.Long">
+        select count(*)
+        from room
+        where status = -1 and onerid = #{onerid}
+    </select>
+
+    <select id="getRecycledRoomsPage" resultType="cchf.back.vo.RoomBuildVo">
+        select roomname, roomid, onerid, status, time
+        from room
+        where status = -1 and onerid = #{onerid}
+        order by recycletime desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="getExpiredRooms" resultType="cchf.back.entity.Room">
+        select *
+        from room
+        where status = -1 and recycletime &lt; #{dateTime}
+    </select>
+
+    <delete id="deleteRoomPermanently">
+        delete from room where roomid = #{roomid}
+    </delete>
 
     <select id="getRoom"
             resultType="cchf.back.vo.RoomBuildVo">
@@ -31,7 +67,49 @@
         select roomname, roomid, onerid, status, time
         from room
            where status != -1
+           and onerid = #{onerid}
+    </select>
 
+    <select id="countRoomList" resultType="java.lang.Long">
+        select count(*)
+        from room
+        where status != -1
+        and onerid = #{onerid}
+    </select>
+
+    <select id="getRoomListPage" resultType="cchf.back.vo.RoomBuildVo">
+        select roomname, roomid, onerid, status, time
+        from room
+        where status != -1
+        and onerid = #{onerid}
+        order by time desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="getRelatedRooms" resultType="cchf.back.vo.RoomBuildVo">
+        select r.roomname, r.roomid, r.onerid, r.status, r.time
+        from room r
+        join roommate rm on r.roomid = rm.roomid
+        where rm.memberid = #{memberid}
+        and r.status != -1
+    </select>
+
+    <select id="countRelatedRooms" resultType="java.lang.Long">
+        select count(*)
+        from room r
+        join roommate rm on r.roomid = rm.roomid
+        where rm.memberid = #{memberid}
+        and r.status != -1
+    </select>
+
+    <select id="getRelatedRoomsPage" resultType="cchf.back.vo.RoomBuildVo">
+        select r.roomname, r.roomid, r.onerid, r.status, r.time
+        from room r
+        join roommate rm on r.roomid = rm.roomid
+        where rm.memberid = #{memberid}
+        and r.status != -1
+        order by r.time desc
+        limit #{offset}, #{pageSize}
     </select>
     <select id="getRoomPassword" resultType="java.lang.String">
         select roompassword
@@ -39,4 +117,10 @@
             where status != -1
             and roomname = #{roomname}
     </select>
+
+    <update id="renameRoom">
+        update room
+        set roomname = #{newName}
+        where roomid = #{roomid}
+    </update>
 </mapper>

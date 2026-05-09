@@ -1,6 +1,8 @@
 package cchf.back.mapper;
 
 import cchf.back.dto.MateDto;
+import cchf.back.entity.Mate;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -18,5 +20,11 @@ public interface MateMapper {
 
     boolean addUserByRoomId(String roomid, MateDto mateDto);
 
-    boolean deleteUserByRoomIdAndUserId(String roomid,String uid);
+    boolean deleteUserByRoomIdAndUserId(String roomid, String uid);
+
+    Mate getUserIdByRoomIdAndUserId(String roomid, String userid);
+
+    void addMateInfo(Mate mate);
+
+    void deleteAllByRoomId(String roomid);
 }

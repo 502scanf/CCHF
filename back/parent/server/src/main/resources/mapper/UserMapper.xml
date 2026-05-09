@@ -38,4 +38,9 @@
     <delete id="deleteUserInfo">
         delete from user where uid = #{uid}
     </delete>
+    <select id="getMemberName">
+    select uname
+    from user
+    where uid = #{userid}
+    </select>
 </mapper>

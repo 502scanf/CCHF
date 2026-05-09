@@ -16,5 +16,8 @@ public class DocBuildVo implements Serializable {
     private String docname;
     private String doctype;
     private int status;
-    private Timestamp time;
+    private Timestamp createtime;
+    private String docid;
+    private Timestamp updatetime;  // 更新时间
+    private String updater;        // 更新人姓名
 }

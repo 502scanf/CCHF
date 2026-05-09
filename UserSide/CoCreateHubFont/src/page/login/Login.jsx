@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Form, Input,   message } from "antd";
+import { Form, Input, message } from "antd";
 import './Login.css'
 import logo from "@assets/logo.png";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {fetchUser} from "@page/store/reducers/user.js"; // 引入图片
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fetchUser } from "@page/store/reducers/user.js"; // 引入图片
 
-const Login= () => {
+const Login = () => {
   const [form] = Form.useForm();
   // const [autoLogin, setAutoLogin] = useState(false);
 
@@ -18,10 +18,18 @@ const Login= () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const onFinish = async (value)=>{
-    console.log(value)
+  const onFinish = async (value) => {
+
     await dispatch(fetchUser(value))
-    navigate('/')
+
+    const searchParams = new URLSearchParams(window.location.search)
+    const redirect = searchParams.get('redirect')
+
+    if (redirect) {
+      navigate(redirect)
+    } else {
+      navigate('/')
+    }
     message.success('登录成功')
   }
 
@@ -30,7 +38,7 @@ const Login= () => {
       {/* 新增 logo 和标题部分 */}
       <div className="header-logo">
         <img src={logo} alt="Logo" className="header-logo-img" />
-        <p className="header-title">CoCreateHub</p>
+        <p className="header-title cch-title">CoCreateHub</p>
       </div>
 
       <div className="login-container">

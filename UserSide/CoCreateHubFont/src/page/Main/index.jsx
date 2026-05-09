@@ -1,14 +1,14 @@
-import {Layout, theme, Form, Input, Button, message} from 'antd';
-import {Outlet, useNavigate} from "react-router-dom";
+import { Layout, theme, Form, Input, Button, message } from 'antd';
+import { Outlet, useNavigate } from "react-router-dom";
 import CommonAside from "./component/commonAside/index.jsx";
 import CommonHeader from "./component/commonHeader/index.jsx";
-import {useDispatch, useSelector} from "react-redux";
-import  './Main.css'
-import React, {useState} from "react";
-import {PopForm} from "@page/component/Form.jsx";
-import {addRoomList} from "@page/store/reducers/room.js";
+import { useDispatch, useSelector } from "react-redux";
+import './Main.css'
+import React, { useState } from "react";
+import { PopForm } from "@page/component/Form.jsx";
+import { addRoomList } from "@page/store/reducers/room.js";
 import axios from "axios";
-import {passRoomApi} from "@page/api/room.js";
+import { passRoomApi } from "@page/api/room.js";
 
 const { Content } = Layout;
 
@@ -18,17 +18,16 @@ const Main = () => {
     const inputValue = form.getFieldValue("roomname");
     const dispatch = useDispatch();
 
-    const onFinish = async (value)=>{
+    const onFinish = async (value) => {
 
         console.log(value)
         const roomData = await dispatch(addRoomList(value))
         console.log(roomData)
 
-        try{
-           await passRoomApi(value)
+        try {
             navigate(`/work/${roomData.roomid}`)
             message.success('创建成功')
-        }catch{
+        } catch {
             message.error('创建失败')
         }
 
@@ -63,12 +62,8 @@ const Main = () => {
                     colon={false}
 
                 >
-                    <Form.Item label="名字" name="roomname" rules={[{ required: true, message: "名字不能为空"}]}>
-                        <Input placeholder="请输入工作区名称"/>
-                    </Form.Item>
-
-                    <Form.Item label="密码" name="roompassword" rules={[{ required: true, message: "密码不能为空"}]}>
-                        <Input.Password placeholder="请输入房间的密码"/>
+                    <Form.Item label="名字" name="roomname" rules={[{ required: true, message: "名字不能为空" }]}>
+                        <Input placeholder="请输入工作区名称" />
                     </Form.Item>
 
                     <Form.Item label=" ">
@@ -96,7 +91,7 @@ const Main = () => {
 
                         }}
                     >
-                        <Outlet/>
+                        <Outlet />
                     </Content>
                 </Layout>
             </Layout>

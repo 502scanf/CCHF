@@ -18,5 +18,4 @@ public class RoomBuildVo implements Serializable {
     private String onerid;
     private int status;
     private Timestamp time;
-    private String token;
 }

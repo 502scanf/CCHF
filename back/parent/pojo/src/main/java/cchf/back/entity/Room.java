@@ -17,5 +17,5 @@ public class Room {
     private String onerid;
     private int status;
     private Timestamp time;
-    private String roompassword;
+    private Timestamp recycletime;
 }

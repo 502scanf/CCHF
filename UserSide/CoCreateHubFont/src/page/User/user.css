@@ -1,232 +1,429 @@
+/* 整体容器 */
 .userSetting {
-    height: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a0b 0%, #1a1a1b 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    /*padding: 20px;*/
-    background-color: #202021;
-    /*overflow: hidden;*/
+    padding-bottom: 40px;
 }
 
-/* 顶部样式 */
+/* 顶部导航栏 */
 .userTop {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    padding: 10px 15px;
-    background-color: transparent;
-    color: #ddd;
-
-    margin-bottom: 20px;
-}
-
-.backButton{
+    max-width: 1200px;
     display: flex;
-    position: absolute;
-    left: 0;
-    cursor: pointer;
-    color: #ddd;
-    background-color: transparent;
-    opacity: 0.5;
-    width: 50px;
-    height: 40px;
-    margin-left: 20px;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    padding: 24px 32px;
+    position: relative;
+    background: rgba(26, 26, 27, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(76, 201, 240, 0.1);
 }
 
-.backButton svg{
+.backButton {
+    position: absolute;
+    left: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(76, 201, 240, 0.1);
+    border: 1px solid rgba(76, 201, 240, 0.2);
+    border-radius: 8px;
+    color: #4cc9f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.backButton:hover {
+    background: rgba(76, 201, 240, 0.2);
+    border-color: #4cc9f0;
+    transform: translateX(-2px);
+}
+
+.backButton svg {
     width: 20px;
     height: 20px;
 }
 
-.userTop span {
-    font-size: 1.625em;
-}
-
-/* 每个选项样式 */
-.Option {
-    width: 666px;
-    padding: 6px;
-    background-color: transparent;
-    color: #dddd;
-    border-radius: 8px;
-    border-color: white;
-    font-size: 1em;
-    /*box-shadow: 0 2px 5px rgb(255, 255, 255);*/
-}
-
-.Option h3 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.375em;
-    margin-bottom: 2px;
-}
-
-.Option h3 button {
-    color: #ddd;
-}
-
-.Option hr {
-    border: none;
-    border-top: 1px solid #7a7a7a;
-    margin: 5px 0;
-}
-
-/* 每个设置项 */
-.Inform {
-    display: flex;
-    flex-direction: column; /* 使设置项垂直排列*/
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 10px 0;
-    font-size: 1.125em;
-}
-
-.UserInfo {
-    display: flex;
-    align-items: center;
-    height: 64px;
-    justify-content: space-between;
-    background-color: transparent;
-    font-size: 1em;
-}
-
-/* 头像 */
-.userLogo {
-    width: 64px;
-    height: 64px;
-    margin-right: 20px;
-    background-color: #ddd;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-}
-
-/* 用户详情 */
-.userDetails {
-    flex: 1;
-    margin-left: 10px;
-    font-size: 1.375em;
-}
-
-.userDetails .spanHead {
-    display: block;
-    margin-bottom: 2px;
-}
-
-/* 编辑按钮 */
-.editButton {
-    background-color: #007bff;
+.pageTitle {
+    font-size: 24px;
+    font-weight: 600;
     color: #fff;
+    letter-spacing: 0.5px;
+}
+
+/* 设置容器 */
+.settingsContainer {
+    width: 100%;
+    max-width: 800px;
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* 设置卡片 */
+.settingCard {
+    background: rgba(26, 26, 27, 0.8);
+    border: 1px solid rgba(76, 201, 240, 0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.settingCard:hover {
+    border-color: rgba(76, 201, 240, 0.3);
+    box-shadow: 0 8px 32px rgba(76, 201, 240, 0.1);
+    transform: translateY(-2px);
+}
+
+/* 卡片头部 */
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    background: rgba(76, 201, 240, 0.05);
+    border-bottom: 1px solid rgba(76, 201, 240, 0.1);
+}
+
+.cardIcon {
+    color: #4cc9f0;
+    font-size: 24px !important;
+}
+
+.cardHeader h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.3px;
+}
+
+/* 卡片内容 */
+.cardContent {
+    padding: 24px;
+}
+
+/* 用户信息卡片特殊样式 */
+.userInfoCard {
+    background: linear-gradient(135deg, rgba(76, 201, 240, 0.1) 0%, rgba(26, 26, 27, 0.8) 100%);
+}
+
+.userProfile {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.userAvatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4cc9f0 0%, #3a9fb8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(76, 201, 240, 0.3);
+    box-shadow: 0 4px 16px rgba(76, 201, 240, 0.2);
+}
+
+.userAvatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userAvatar svg {
+    font-size: 40px !important;
+    color: #fff;
+}
+
+.userInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.infoLabel {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.infoValue {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.editButton {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #4cc9f0 0%, #3a9fb8 100%);
+    color: #000;
     border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(76, 201, 240, 0.3);
 }
 
-.InfoEdit {
-    background-color: #001529;
-    font-size: 1.325em;
+.editButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 201, 240, 0.4);
 }
 
-/* 消息设置开关样式 */
-.messageOption{
+/* 设置项 */
+.settingItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    gap: 24px;
+}
+
+.settingInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.settingLabel {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.settingDesc {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.5;
+}
+
+.settingControl {
+    min-width: 150px;
+}
+
+.retentionSelect {
     width: 100%;
 }
 
-.messageOption .spanHead ,
-.fileOption  .spanHead,
-.spanTip .spanHead{
-    font-size: 1.125em;
-    font-weight: bold;
+.retentionSelect .MuiOutlinedInput-root {
+    background: rgba(76, 201, 240, 0.05);
+    color: #fff;
+    border-radius: 8px;
 }
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 34px;
-    height: 20px;
+.retentionSelect .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(76, 201, 240, 0.3);
 }
 
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+.retentionSelect .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #4cc9f0;
 }
 
-.slider {
-    position: absolute;
+.retentionSelect .MuiSelect-icon {
+    color: #4cc9f0;
+}
+
+/* 分隔线 */
+.settingDivider {
+    height: 1px;
+    background: rgba(76, 201, 240, 0.1);
+    margin: 20px 0;
+}
+
+/* 设置操作按钮 */
+.settingActions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.saveButton {
+    padding: 10px 24px;
+    background: rgba(76, 201, 240, 0.1);
+    color: #4cc9f0;
+    border: 1px solid rgba(76, 201, 240, 0.3);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
+.saveButton:hover {
+    background: rgba(76, 201, 240, 0.2);
+    border-color: #4cc9f0;
+    transform: translateY(-1px);
 }
 
-input:checked + .slider {
-    background-color: #007bff;
+/* 联系项 */
+.contactItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
 }
 
-input:checked + .slider:before {
-    transform: translateX(14px);
+.contactLabel {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
 }
 
-.expandButton {
+.linkButton {
+    padding: 8px 16px;
     background: transparent;
-    border: none;
+    color: #4cc9f0;
+    border: 1px solid rgba(76, 201, 240, 0.3);
+    border-radius: 6px;
+    font-size: 14px;
     cursor: pointer;
-    font-size: 20px;
+    transition: all 0.3s ease;
 }
 
-.DelOutBut button{
-    background-color: #001529;
-    width: 200px;
-    height: 66px;
-    font-size: 1.375em;
-    font-weight: bold;
+.linkButton:hover {
+    background: rgba(76, 201, 240, 0.1);
+    border-color: #4cc9f0;
 }
 
-.hover1{
-
-    float: left;
-    color: #000000;
-}
-.hover1:hover{
-    background-color: #f85757;
-    border: 1px solid #f85757;
-}
-.hover2{
-    float: right;
-    color: #000000;
-}
-.hover2:hover{
-    background-color:  #54f387;
-    border: 1px solid #54f387;
+/* 账号操作按钮 */
+.accountActions {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
 }
 
+.dangerButton,
+.primaryButton {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
+.dangerButton {
+    background: rgba(248, 87, 87, 0.1);
+    color: #f85757;
+    border: 1px solid rgba(248, 87, 87, 0.3);
+}
+
+.dangerButton:hover {
+    background: rgba(248, 87, 87, 0.2);
+    border-color: #f85757;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(248, 87, 87, 0.3);
+}
+
+.primaryButton {
+    background: linear-gradient(135deg, #4cc9f0 0%, #3a9fb8 100%);
+    color: #000;
+    box-shadow: 0 4px 16px rgba(76, 201, 240, 0.3);
+}
+
+.primaryButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(76, 201, 240, 0.4);
+}
+
+/* 对话框样式覆盖 */
+.MuiDialog-paper {
+    background: #1a1a1b !important;
+    border: 1px solid rgba(76, 201, 240, 0.2);
+    border-radius: 16px !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root {
+    background: rgba(76, 201, 240, 0.05);
+    border-radius: 8px;
+}
+
+.MuiTextField-root .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(76, 201, 240, 0.3);
+}
+
+.MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #4cc9f0;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #4cc9f0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .settingsContainer {
+        max-width: 100%;
+        padding: 16px;
+    }
+
+    .userProfile {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .settingItem {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .settingControl {
+        width: 100%;
+    }
+
+    .accountActions {
+        flex-direction: column;
+    }
+
+    .userTop {
+        padding: 16px;
+    }
+
+    .backButton {
+        left: 16px;
+    }
+
+    .pageTitle {
+        font-size: 20px;
+    }
+}
+
+/* 滚动条样式 */
+.userSetting::-webkit-scrollbar {
+    width: 8px;
+}
+
+.userSetting::-webkit-scrollbar-track {
+    background: rgba(26, 26, 27, 0.5);
+}
+
+.userSetting::-webkit-scrollbar-thumb {
+    background: rgba(76, 201, 240, 0.3);
+    border-radius: 4px;
+}
+
+.userSetting::-webkit-scrollbar-thumb:hover {
+    background: rgba(76, 201, 240, 0.5);
+}

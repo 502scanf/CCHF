@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cchf.back.mapper.TaskNotificationMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="TaskNotificationResultMap" type="cchf.back.entity.TaskNotification">
+        <id property="notificationid" column="notificationid"/>
+        <result property="roomid" column="roomid"/>
+        <result property="taskid" column="taskid"/>
+        <result property="actionType" column="action_type"/>
+        <result property="taskContent" column="task_content"/>
+        <result property="operator" column="operator"/>
+        <result property="createtime" column="createtime"/>
+        <result property="isRead" column="is_read"/>
+    </resultMap>
+
+    <!-- 创建任务通知 -->
+    <insert id="createNotification" parameterType="cchf.back.entity.TaskNotification">
+        INSERT INTO task_notification (
+            notificationid, roomid, taskid, action_type, 
+            task_content, operator, createtime, is_read
+        ) VALUES (
+            #{notificationid}, #{roomid}, #{taskid}, #{actionType},
+            #{taskContent}, #{operator}, #{createtime}, #{isRead}
+        )
+    </insert>
+
+    <!-- 根据房间ID获取通知列表 -->
+    <select id="getNotificationsByRoomId" resultMap="TaskNotificationResultMap">
+        SELECT notificationid, roomid, taskid, action_type, task_content, 
+               operator, createtime, is_read
+        FROM task_notification
+        WHERE roomid = #{roomid}
+        ORDER BY createtime DESC
+        LIMIT 50
+    </select>
+
+    <!-- 标记通知为已读 -->
+    <update id="markAsRead">
+        UPDATE task_notification 
+        SET is_read = 1 
+        WHERE notificationid = #{notificationid}
+    </update>
+
+    <!-- 标记房间所有通知为已读 -->
+    <update id="markAllAsReadByRoomId">
+        UPDATE task_notification 
+        SET is_read = 1 
+        WHERE roomid = #{roomid}
+    </update>
+
+    <!-- 获取房间未读通知数量 -->
+    <select id="getUnreadCountByRoomId" resultType="int">
+        SELECT COUNT(*) 
+        FROM task_notification 
+        WHERE roomid = #{roomid} AND is_read = 0
+    </select>
+
+    <!-- 删除过期通知（保留最近的指定数量） -->
+    <delete id="deleteOldNotifications">
+        DELETE FROM task_notification 
+        WHERE roomid = #{roomid} 
+        AND notificationid NOT IN (
+            SELECT notificationid FROM (
+                SELECT notificationid 
+                FROM task_notification 
+                WHERE roomid = #{roomid}
+                ORDER BY createtime DESC 
+                LIMIT #{keepCount}
+            ) AS recent_notifications
+        )
+    </delete>
+
+</mapper>

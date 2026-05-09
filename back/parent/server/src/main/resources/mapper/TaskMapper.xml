@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cchf.back.mapper.TaskMapper">
+
+    <!-- 创建任务 -->
+    <insert id="createTask" parameterType="cchf.back.entity.RoomTask">
+        INSERT INTO room_task (taskid, roomid, content, creator, createtime, updatetime)
+        VALUES (#{taskid}, #{roomid}, #{content}, #{creator}, #{createtime}, #{updatetime})
+    </insert>
+
+    <!-- 根据房间ID查询任务列表 -->
+    <select id="getTasksByRoomId" resultType="cchf.back.entity.RoomTask">
+        SELECT taskid, roomid, content, creator, createtime, updatetime
+        FROM room_task
+        WHERE roomid = #{roomid}
+        ORDER BY createtime ASC
+    </select>
+
+    <!-- 根据任务ID查询任务 -->
+    <select id="getTaskById" resultType="cchf.back.entity.RoomTask">
+        SELECT taskid, roomid, content, creator, createtime, updatetime
+        FROM room_task
+        WHERE taskid = #{taskid}
+    </select>
+
+    <!-- 更新任务 -->
+    <update id="updateTask" parameterType="cchf.back.entity.RoomTask">
+        UPDATE room_task
+        SET content = #{content},
+            updatetime = #{updatetime}
+        WHERE taskid = #{taskid}
+    </update>
+
+    <!-- 删除任务 -->
+    <delete id="deleteTask">
+        DELETE FROM room_task WHERE taskid = #{taskid}
+    </delete>
+
+    <!-- 获取房间任务数量 -->
+    <select id="getTaskCountByRoomId" resultType="int">
+        SELECT COUNT(*) FROM room_task WHERE roomid = #{roomid}
+    </select>
+
+</mapper>

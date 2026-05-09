@@ -14,4 +14,6 @@ public class MessageConstant {
     public static final String DOC_NUMBER_NULL = "没创建文件";
     public static final String User_INFO_ERROR = "信息更新失败";
     public static final String User_DELETE_ERROR = "注销失败";
+    public static final String CODE_NOT_FOUND = "验证失败";
+    public static final String INVITE_TOKEN_ERROR = "邀请连接失效";
 }

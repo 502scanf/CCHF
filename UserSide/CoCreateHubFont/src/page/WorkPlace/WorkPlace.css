@@ -1,93 +1,123 @@
-html, body {
+html,
+body {
     height: 100%;
-    margin: 0; /* 去除默认的 margin */
-    padding: 0; /* 去除默认的 padding */
+    margin: 0;
+    /* 去除默认的 margin */
+    padding: 0;
+    /* 去除默认的 padding */
     background-color: #525252;
 }
 
-#root{
+#root {
     position: relative;
-   top: 0;
+    top: 0;
     width: 100%;
-    height:100vh;
+    height: 100vh;
 }
-.workPlace{
+
+.workPlace {
     width: 100%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* 水平居中 */
+    justify-content: center;
+    /* 水平居中 */
 }
-.holeEditor{
-    margin-top: 10%;
+
+.holeEditor {
+    margin: 80px auto 40px auto;
+    /* 顶部留出空间，并水平居中 */
     background-color: white;
     color: black;
     width: 70%;
-    height: 100%;
-    border-radius: 5px;
-    display: block;
-
+    min-height: calc(100vh - 120px);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* 加一点阴影让它更好看 */
+    display: flex;
+    flex-direction: column;
 }
-.editable{
+
+.editable {
     width: 90%;
-    height: 100%;
-    margin: 20px;
-    flex-wrap: wrap;
+    flex: 1;
+    margin: 20px auto;
+    /* 保证输入区域在编辑器内部也居中 */
+    padding-bottom: 50px;
 }
 
-.editable:focus{
+.editable:focus {
     outline: none;
 }
-.editable p{
-    margin:  0.2em 0;
+
+.editable p {
+    margin: 0.2em 0;
     width: 100%;
 }
-.editorHead{
+
+.editorHead {
     width: 100%;
-    height: 85px;
+    height: 40px;
     background-color: black;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     opacity: 0.9;
     position: fixed;
     display: flex;
+    padding-bottom: 20px;
+
 }
-.editorHead img{
+
+.editorHead img {
     cursor: pointer;
-    margin: 25px 3px 16px 50px;
+    margin: 15px 3px 16px 20px;
     width: 35px;
     height: 35px;
 }
-.editorHead span{
+
+.editorHead span {
     cursor: pointer;
     font-size: 30px;
     color: white;
     font-weight: bold;
-    line-height: 80px;
+    line-height: 62px;
 }
 
-.mesAuser{
+.mesAuser {
     cursor: pointer;
     position: absolute;
     right: 0;
     display: flex;
 }
-.mes svg{
+
+
+
+.mes {
+    display: flex;
+    align-items: center;
+}
+
+.mes svg {
     width: 20px;
     height: 20px;
-    margin: 35px 10px 30px;
+    /* margin: 20px 10px 30px; */
 }
-.user svg{
+
+
+.user svg {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    margin: 15px 15px;
+    margin: 8px 15px;
 }
-.loading{
+
+.loading {
     width: 100px;
     height: 100px;
-    margin: 10%;
+    display: block;
+    margin: 10% auto;
 }
-.doc{
+
+.doc {
     /*overflow: hidden;*/
     position: fixed;
     left: 0;
@@ -97,7 +127,8 @@ html, body {
     justify-content: center;
 
 }
-.docList{
+
+.docList {
     width: 100%;
     flex: 0 0 100%;
     transition: transform 0.5s;
@@ -105,7 +136,8 @@ html, body {
     color: black;
 
 }
-.buildLogo{
+
+.buildLogo {
     position: fixed;
     margin-top: 85px;
     top: 20px;
@@ -116,7 +148,8 @@ html, body {
     cursor: pointer;
     opacity: 0.8;
 }
-.docItem{
+
+.docItem {
     display: flex;
     width: 70%;
     height: 70px;
@@ -128,21 +161,292 @@ html, body {
     cursor: pointer;
     border-radius: 5px;
 }
-.docItem img{
+
+.docItem img {
     width: 90%;
     height: 80%;
 }
-.docItem span{
+
+.docItem span {
     line-height: 10px;
     font-weight: 600;
     font-size: 12px;
     color: #000000;
 }
-.docItem:hover{
+
+.docItem:hover {
     background-color: #f1f1f1;
 
 }
-.partnerLogo{
+
+.partnerLogo {
     height: 32px;
     width: 32px;
+}
+
+.onlineAvatars {
+    display: flex;
+    align-items: center;
+    margin: 22px 16px;
+}
+
+.enterOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.enterModal {
+    background: rgba(30, 30, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.enterModal span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.enterSpinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== 成员模块 ===== */
+.memberMod {
+    position: fixed;
+    right: 16px;
+    top: 80px;
+    width: 120px;
+    background: rgba(20, 20, 20, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.memberModTitle {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.5px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.memberGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    flex: 1;
+}
+
+.memberItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+}
+
+.memberAvatarWrap {
+    position: relative;
+}
+
+.memberOnlineDot {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 8px;
+    height: 8px;
+    background: #52c41a;
+    border-radius: 50%;
+    border: 2px solid rgba(20, 20, 20, 0.92);
+}
+
+.inviteBt {
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #4f8cff, #6c5ce7);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    margin-top: auto;
+}
+
+.inviteBt:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(79, 140, 255, 0.35);
+}
+
+.inviteBt:active {
+    transform: translateY(0);
+}
+
+/* 工具栏更多按钮样式 */
+.toolbar-button {
+    color: #999999;
+    cursor: pointer;
+    margin: 12px;
+    background: none;
+    border: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.toolbar-button:hover {
+    color: black;
+}
+
+.toolbar-button svg {
+    font-size: 18px;
+}
+
+/* 文件列表切换按钮 */
+.file-list-toggle {
+    position: fixed;
+    left: 16px;
+    top: 100px;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #4f8cff, #6c5ce7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(79, 140, 255, 0.4);
+    transition: all 0.3s;
+    z-index: 101;
+}
+
+.file-list-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(79, 140, 255, 0.6);
+}
+
+.file-list-toggle:active {
+    transform: scale(0.95);
+}
+
+.toggle-icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+/* 新建文件按钮 */
+.new-file-button {
+    position: absolute;
+    left: 130px;
+    top: 80px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #4f8cff, #6c5ce7);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(79, 140, 255, 0.5);
+    transition: all 0.3s ease;
+    z-index: 102;
+    gap: 4px;
+    padding: 3px;
+}
+
+.new-file-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 28px rgba(79, 140, 255, 0.7);
+}
+
+.new-file-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.new-file-icon {
+    width: 28px;
+    height: 28px;
+    color: white;
+}
+
+.new-file-text {
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* 文件列表包装器 */
+.file-list-wrapper {
+    animation: slideInFromLeft 0.5s ease-out;
+}
+
+.file-list-wrapper.closing {
+    animation: slideOutToLeft 0.5s ease-out;
+}
+
+/* 滑入动画 */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* 滑出动画 */
+@keyframes slideOutToLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
 }

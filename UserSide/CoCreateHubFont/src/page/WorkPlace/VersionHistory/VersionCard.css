@@ -1,0 +1,339 @@
+/* 版本卡片样式 */
+.version-card {
+    position: relative;
+    margin-left: 40px;
+    margin-bottom: 12px;
+    background: var(--vh-bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--vh-border);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.3s ease-out;
+    animation-delay: calc(0.05s * var(--index, 0));
+    animation-fill-mode: both;
+    cursor: pointer;
+}
+
+.version-card:hover {
+    background: rgba(45, 45, 45, 0.9);
+    border-color: var(--vh-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.version-card.selected {
+    border-color: var(--vh-accent);
+    background: rgba(24, 144, 255, 0.1);
+}
+
+.version-card.previewing {
+    border-color: var(--vh-success);
+    background: rgba(82, 196, 26, 0.08);
+    box-shadow: 0 0 0 2px rgba(82, 196, 26, 0.2);
+}
+
+.version-card.previewing .timeline-node {
+    background: var(--vh-success);
+    box-shadow: 0 0 8px rgba(82, 196, 26, 0.5);
+}
+
+.version-card.milestone {
+    border-color: var(--vh-milestone);
+}
+
+.version-card.milestone::before {
+    background: var(--vh-milestone);
+    width: 16px;
+    height: 16px;
+    left: -26px;
+    top: 18px;
+}
+
+/* 简化版卡片样式 */
+.version-card.simple {
+    padding: 10px 12px;
+}
+
+.version-card.simple .version-card-content {
+    padding: 0;
+}
+
+.version-info-simple {
+    margin-bottom: 8px;
+}
+
+.version-meta-simple {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.version-meta-simple .editor-name {
+    color: var(--vh-text-primary);
+    font-weight: 500;
+}
+
+.version-meta-simple .version-time {
+    color: var(--vh-text-muted);
+}
+
+.version-labels-simple {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.label-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: rgba(24, 144, 255, 0.15);
+    border: 1px solid rgba(24, 144, 255, 0.3);
+    border-radius: 3px;
+    color: var(--vh-accent);
+    font-size: 11px;
+}
+
+.restore-btn {
+    padding: 0;
+    height: auto;
+    font-size: 12px;
+    color: var(--vh-accent);
+}
+
+.restore-btn:hover {
+    color: #40a9ff;
+}
+
+/* 时间线节点 */
+.timeline-node {
+    position: absolute;
+    left: -20px;
+    top: 14px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--vh-accent);
+    border: 2px solid var(--vh-bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.timeline-node .anticon {
+    font-size: 6px;
+    color: white;
+}
+
+.milestone .timeline-node {
+    background: var(--vh-milestone);
+    width: 12px;
+    height: 12px;
+    left: -21px;
+    top: 13px;
+}
+
+.milestone .timeline-node .anticon {
+    font-size: 8px;
+}
+
+/* 卡片内容 */
+.version-card-content {
+    padding: 16px;
+}
+
+.version-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.version-checkbox {
+    margin-top: 2px;
+}
+
+.version-checkbox .ant-checkbox-inner {
+    background: var(--vh-bg-secondary);
+    border-color: var(--vh-border);
+}
+
+.version-checkbox .ant-checkbox-checked .ant-checkbox-inner {
+    background: var(--vh-accent);
+    border-color: var(--vh-accent);
+}
+
+.version-info {
+    flex: 1;
+}
+
+.version-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.editor-name {
+    font-weight: 600;
+    color: var(--vh-text-primary);
+    font-size: 14px;
+}
+
+.version-time {
+    color: var(--vh-text-secondary);
+    font-size: 12px;
+}
+
+.snapshot-type {
+    color: var(--vh-text-muted);
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.lock-icon {
+    color: var(--vh-warning);
+    font-size: 12px;
+}
+
+.milestone-icon {
+    color: var(--vh-milestone);
+}
+
+.auto-icon {
+    color: var(--vh-text-muted);
+}
+
+/* 版本标签 */
+.version-labels {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.version-labels .ant-tag {
+    background: rgba(24, 144, 255, 0.2);
+    border-color: var(--vh-accent);
+    color: var(--vh-accent);
+    margin: 0;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.version-labels .ant-tag .ant-tag-close-icon {
+    color: var(--vh-accent);
+    margin-left: 4px;
+}
+
+.version-labels .ant-tag .ant-tag-close-icon:hover {
+    color: white;
+}
+
+/* 菜单按钮 */
+.version-menu-button {
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--vh-text-secondary);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.version-menu-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--vh-text-primary);
+}
+
+/* 差异统计 */
+.diff-stats {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    margin-top: 8px;
+}
+
+.additions {
+    color: var(--vh-success);
+}
+
+.deletions {
+    color: var(--vh-error);
+}
+
+.modifications {
+    color: var(--vh-warning);
+}
+
+/* 文件大小 */
+.file-size {
+    color: var(--vh-text-muted);
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+/* 连接线 */
+.timeline-connector {
+    position: absolute;
+    left: -18px;
+    bottom: -16px;
+    width: 2px;
+    height: 16px;
+    background: var(--vh-border);
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .version-card {
+        margin-left: 40px;
+        margin-bottom: 12px;
+    }
+
+    .timeline-node {
+        left: -20px;
+    }
+
+    .milestone .timeline-node {
+        left: -22px;
+    }
+
+    .version-card-content {
+        padding: 12px;
+    }
+
+    .version-meta {
+        gap: 8px;
+    }
+
+    .editor-name {
+        font-size: 13px;
+    }
+
+    .version-time,
+    .snapshot-type {
+        font-size: 11px;
+    }
+}

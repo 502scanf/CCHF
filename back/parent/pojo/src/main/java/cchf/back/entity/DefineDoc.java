@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @Data
@@ -18,6 +17,9 @@ public class DefineDoc {
     private String doctype;
     private String docroomid;
     private int status;
+    private byte[] content;
+    private String owner;
+    private Timestamp createtime;
+    private Timestamp updatetime;
 
-    private Timestamp time;
 }

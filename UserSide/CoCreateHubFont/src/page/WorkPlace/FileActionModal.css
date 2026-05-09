@@ -1,0 +1,55 @@
+.file-action-modal .ant-modal-content {
+    background: rgba(25, 25, 25, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+.file-action-modal .ant-modal-close-x {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.file-action-container {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+}
+
+.file-action-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.file-action-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(79, 140, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.file-action-icon {
+    font-size: 48px;
+    color: #4f8cff;
+    margin-bottom: 16px;
+}
+
+.file-action-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.file-action-desc {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    margin: 0;
+    line-height: 1.4;
+}

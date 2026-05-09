@@ -1,11 +1,12 @@
-.doc-container{
-    height:100%;
+.doc-container {
+    height: 100%;
 }
 
 .docList {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* 间距可以根据需要调整 */
+    gap: 10px;
+    /* 间距可以根据需要调整 */
     justify-content: flex-start;
     margin-top: 8px;
 }
@@ -19,10 +20,37 @@
     border-radius: 4px;
     background-color: #f9f9f9;
     height: 140px;
-    width: calc(25% - 8px); /* 每行显示 3 个元素，根据需要调整 */
+    width: calc(25% - 8px);
+    /* 每行显示 3 个元素，根据需要调整 */
 }
 
-.doc-img{
+.doc-img {
     height: 90%;
     width: 100%;
+}
+
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 16px 0;
+}
+
+.doc-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    height: 140px;
+    width: calc(25% - 8px);
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.doc-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }

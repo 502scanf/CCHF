@@ -1,6 +1,5 @@
 package cchf.back.properties;
 
-
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -16,6 +15,6 @@ public class JwtProperties {
     private String roomSecretKey;
     private long roomTtl;
     private String roomToken;
-
+    private long inviteTtl;
 
 }

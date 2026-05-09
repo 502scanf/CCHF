@@ -7,12 +7,34 @@
         from room_user_relation rur
         where rur.roomid = #{roomid}
     </select>
+
     <insert id="addUserByRoomId" >
         INSERT INTO room_user_relation (roomid, uid, uname, logo)
         VALUES (#{roomid}, #{mateDto.uid}, #{mateDto.uname}, #{mateDto.logo})
     </insert>
+
     <delete id="deleteUserByRoomIdAndUserId">
         DELETE FROM room_user_relation
         WHERE roomid = #{roomid} AND uid = #{uid}
+    </delete>
+
+    <select 
+        id="getUserIdByRoomIdAndUserId" 
+        resultType="cchf.back.entity.Mate">
+        select roomid, memberid, membername
+            from roommate
+            where roomid = #{roomid} and memberid = #{userid}
+    </select> 
+
+    <insert id="addMateInfo">
+    insert into 
+    roommate
+    (roomid, memberid, membername)
+    VALUES
+    (#{roomid}, #{userid}, #{membername})
+    </insert>
+
+    <delete id="deleteAllByRoomId">
+        DELETE FROM roommate WHERE roomid = #{roomid}
     </delete>
 </mapper>

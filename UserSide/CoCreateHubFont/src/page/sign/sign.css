@@ -1,13 +1,14 @@
-body{
+body {
     background-color: #0b0f15;
 }
+
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: #0b0f15;
 }
 
@@ -51,7 +52,8 @@ body{
     color: #fff;
     width: 100%;
 }
-.emailSpan{
+
+.emailSpan {
     color: #b0b0b0;
 }
 
@@ -72,17 +74,21 @@ button.ant-btn:hover {
     border: 1px solid #696969;
     /* 悬停时边框变深灰色 */
 }
-.login-form{
+
+.login-form {
     width: 320px;
-    height: 200px;
+    height: 280px;
 }
+
 .login-form input {
     height: 40px;
 }
-.form{
+
+.form {
     margin-top: 15px;
 }
-.custom-btn{
+
+.custom-btn {
     width: 300px;
     height: 50px;
     border: 1px solid;
@@ -93,17 +99,19 @@ button.ant-btn:hover {
     font-weight: 300;
     margin: 10px;
 }
+
 .custom-btn:hover {
     background-color: #4cc9f0;
-    -webkit-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
-    -moz-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
-    box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
+    -webkit-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+    -moz-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+    box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
 }
 
-.ant-form-item{
+.ant-form-item {
     margin-bottom: 16px;
 }
-.ant-form-item .ant-form-item-label >label{
+
+.ant-form-item .ant-form-item-label>label {
     color: #b0b0b0;
 
 }

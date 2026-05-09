@@ -21,8 +21,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
        log.info("注册自定义拦截器...");
        registry.addInterceptor(jwtLoginInterceptor)
                .addPathPatterns("/cch/**")
-               .excludePathPatterns("/cch/login")
-               .excludePathPatterns("/cch/sign");
+               .excludePathPatterns(
+                       "/cch/login",
+                       "/cch/sign",
+                       "/cch/code"
+                       );
+
        registry.addInterceptor(jwtRoomInterceptor)
                .addPathPatterns("/cch/roomPlace/insideRoom");
 

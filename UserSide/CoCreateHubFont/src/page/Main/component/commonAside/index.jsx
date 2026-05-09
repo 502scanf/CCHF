@@ -7,29 +7,29 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import './index.css'
-import {useNavigate} from "react-router-dom";
-import logo from  '@assets/logo.png'
+import { useNavigate } from "react-router-dom";
+import logo from '@assets/logo.png'
 
-const { Sider} = Layout;
+const { Sider } = Layout;
 
-const CommonAside = ({collapsed , setIsShow}) => {
+const CommonAside = ({ collapsed, setIsShow }) => {
     //实现菜单跳转
     const navigate = useNavigate();
 
-    const selectMenu = (e) =>{
+    const selectMenu = (e) => {
         console.log(e)
         navigate(e.key);
     }
 
     return (
         <Sider trigger={null} collapsed={collapsed} width={250}>
-            <div className="logoHead" onClick={()=>navigate('/')}>
-                <img src={logo} alt="React Logo" className="logo"/>
-                {!collapsed&&<span className="app-name">CoCreateHub</span>}
+            <div className="logoHead" onClick={() => navigate('/')}>
+                <img src={logo} alt="React Logo" className="logo" />
+                {!collapsed && <span className="app-name cch-title" style={{ fontSize: '20px', letterSpacing: '1px' }}>CoCreateHub</span>}
             </div>
             <div className="buildWork" onClick={() => setIsShow()}>
-                <AppstoreAddOutlined/>
-                {!collapsed&&<span> 新建工作区</span>}
+                <AppstoreAddOutlined />
+                {!collapsed && <span> 新建工作区</span>}
             </div>
             <Menu
                 theme="dark"
@@ -58,7 +58,7 @@ const CommonAside = ({collapsed , setIsShow}) => {
                 ]}
                 style={{
                     height: '100%',
-                    fontWeight:'bold'
+                    fontWeight: 'bold'
                 }}
                 onClick={selectMenu}
             />

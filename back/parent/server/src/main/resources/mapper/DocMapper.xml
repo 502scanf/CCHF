@@ -5,20 +5,62 @@
 
     <insert
             id="docBuild">
-        insert into doc(docid, docname, doctype, docroomid, status, time)
-            values (#{docid}, #{docname}, #{doctype}, #{docroomid}, #{status}, #{time})
+        insert into doc(docid, docname, doctype, docroomid, status, owner, createtime)
+            values (#{docid}, #{docname}, #{doctype}, #{docroomid}, #{status}, #{owner}, #{createtime})
     </insert>
     <update
             id="recycleDoc">
         update doc
-            set status = -1
+            set status = -1, recycletime = NOW()
             where docname = #{docname} and doctype = #{doctype}
+    </update>
 
+    <update id="recycleDocsByRoomId">
+        update doc
+        set status = -1, recycletime = NOW()
+        where docroomid = #{roomid}
+    </update>
+
+    <update id="restoreDocsByRoomId">
+        update doc
+        set status = 0, recycletime = NULL
+        where docroomid = #{roomid}
+    </update>
+
+    <update id="restoreDoc">
+        update doc
+        set status = 0, recycletime = NULL
+        where docid = #{docid}
+    </update>
+
+    <delete id="deleteDocsByRoomId">
+        delete from doc where docroomid = #{roomid}
+    </delete>
+
+    <delete id="deleteDocPermanently">
+        delete from doc where docid = #{docid}
+    </delete>
+
+    <select id="getRecycledDocs" resultType="cchf.back.vo.DocBuildVo">
+        select docname, doctype, status, createtime, docid
+        from doc
+        where status = -1 and docroomid = #{roomid}
+    </select>
+
+    <select id="getExpiredDocs" resultType="cchf.back.entity.DefineDoc">
+        select docid, docname, doctype, docroomid, status, content, owner, createtime, updatetime, recycletime
+        from doc
+        where status = -1 and recycletime &lt; #{dateTime}
+    </select>
+    <update id="updateDoc">
+        update doc
+            set content = #{content}, updatetime = #{updatetime}, owner = #{owner}
+            where docid = #{docid}
     </update>
     <select
             id="getdoc"
             resultType="cchf.back.vo.DocBuildVo">
-        select docname, doctype, status, time
+        select docname, doctype, status, createtime, docid
             from doc
             where docname=#{docname} and
                   doctype=#{doctype}
@@ -27,9 +69,63 @@
     <select
             id="getDocList"
             resultType="cchf.back.vo.DocBuildVo">
-        select docname, doctype, doctype, status
-        from doc
-            where status != -1
-                and docroomid = #{roomid}
+        select d.docname, d.doctype, d.status, d.docid, d.createtime, d.updatetime, u.uname as updater
+        from doc d
+        left join user u on d.owner = u.uid
+        where d.status != -1
+            and d.docroomid = #{roomid}
+        order by d.updatetime desc
     </select>
+
+    <select id="countDocList" resultType="java.lang.Long">
+        select count(*)
+        from doc
+        where status != -1
+        and docroomid = #{roomid}
+    </select>
+
+    <select id="getDocListPage" resultType="cchf.back.vo.DocBuildVo">
+        select d.docname, d.doctype, d.status, d.docid, d.createtime, d.updatetime, u.uname as updater
+        from doc d
+        left join user u on d.owner = u.uid
+        where d.status != -1
+        and d.docroomid = #{roomid}
+        order by d.updatetime desc
+        limit #{offset}, #{pageSize}
+    </select>
+    <select id="getdocById" resultType="cchf.back.entity.DefineDoc">
+        select docid, docname, doctype, docroomid, status, content, owner, createtime, updatetime
+        from doc
+            where docid =#{docid}
+    </select>
+
+    <update id="saveContent">
+        update doc
+            set content = #{content, jdbcType=BLOB}
+            where docid = #{docid}
+    </update>
+
+    <select id="getContent" resultType="byte[]">
+        select content
+        from doc
+            where docid = #{docid}
+    </select>
+    
+    <update id="renameDoc">
+        update doc
+            set docname = #{newName}
+            where docid = #{docid}
+    </update>
+    
+    <delete id="deleteDocAndVersions">
+        delete from doc
+            where docid = #{docid}
+    </delete>
+    
+    <!-- 新增：更新文档内容（用于版本恢复） -->
+    <update id="updateDocContent">
+        update doc
+            set content = #{content, jdbcType=BLOB}
+            where docid = #{docid}
+    </update>
 </mapper>

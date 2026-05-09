@@ -30,7 +30,6 @@ public class loginController {
     @Autowired
     private JwtProperties jwtProperties;
 
-
     @PostMapping("/login")
     public result<LoginVo> login(@RequestBody LoginDto loginDto){
 
