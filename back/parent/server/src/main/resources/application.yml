@@ -22,8 +22,9 @@ spring:
   mail:
     host: smtp.qq.com                    # QQ邮箱SMTP服务器
     port: 587                            # 端口
-    username: 857653486@qq.com          # 发件人邮箱（需要替换为你的QQ邮箱）
-    password: jexuqbhqtgkhbgaa    # 授权码（需要替换为QQ邮箱授权码，不是邮箱密码）
+    username: 8          # 发件人邮箱（需要替换为你的QQ邮箱）
+    password: j
+    # 授权码（需要替换为QQ邮箱授权码，不是邮箱密码）
     properties:
       mail:
         smtp:
